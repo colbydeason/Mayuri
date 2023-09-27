@@ -1,6 +1,3 @@
-Updates every second, but only displays seconds. 
-Starts with massive number, need to initialize to zero.
-As soon as it starts, it should show zero and then 1.
-Maybe display minutes and seconds, and mod the seconds so it never goes over 60
+Reformat time so it displays minutes as well
 
 StartupUri="MainWindow.xaml" 
