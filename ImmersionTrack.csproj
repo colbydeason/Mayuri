@@ -8,15 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Views\MayuriBlur.jpg" />
+    <None Remove="Images\MayuriBlur.jpg" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Images\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Views\MayuriBlur.jpg" />
+    <Resource Include="Images\MayuriBlur.jpg" />
   </ItemGroup>
 
 </Project>

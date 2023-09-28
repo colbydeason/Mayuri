@@ -13,7 +13,7 @@
     <Grid>
         <StackPanel Margin="0">
             <StackPanel.Background>
-                <ImageBrush ImageSource="/Views/MayuriBlur.jpg" Stretch="UniformToFill"/>
+                <ImageBrush ImageSource="/Images/MayuriBlur.jpg" Stretch="UniformToFill"/>
             </StackPanel.Background>
             <Label Foreground="WhiteSmoke" FontWeight="ExtraBold" HorizontalAlignment="Center" FontSize="60" Margin="20">ImmersionTime</Label>
             <TextBlock Foreground="WhiteSmoke" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="100" Text="{Binding ElapsedTimeString}"/>
