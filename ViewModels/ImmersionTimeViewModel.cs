@@ -13,9 +13,26 @@ namespace ImmersionTrack.ViewModels
     public class ImmersionTimeViewModel : ViewModelBase
     {
         private ImmersionTime _stopWatch;
-        public double ElapsedTime => _stopWatch.ElapsedTime;
-        public string ElapsedTimeString => ElapsedTimeFormat(ElapsedTime);
+
+        //Previous Implimentation of ElapsedTimeString
+        //
+        //public string ElapsedTimeString => _stopWatch.ElapsedTime.ToString();
+
+        public string ElapsedTimeString { get; set; } = "Time to immerse!";
         public ICommand StartAndStopCommand { get; }
+        private bool _toggleStyle = false;
+        public bool ToggleStyle
+        {
+            get
+            {
+                return _toggleStyle;
+            }
+            set
+            {
+                _toggleStyle = value;
+            }
+        }
+        
         public ImmersionTimeViewModel(ImmersionTime stopWatch)
         {
             _stopWatch = stopWatch;
@@ -23,22 +40,17 @@ namespace ImmersionTrack.ViewModels
             _stopWatch.ElapsedTimeChanged += StopWatchElapsedTimeChanged;
         }
 
-        private void StopWatchElapsedTimeChanged()
+        private void StopWatchElapsedTimeChanged(TimeSpan timeSpan)
         {
-            OnPropertyChanged(nameof(ElapsedTime));
+            if (ToggleStyle == false)
+            {
+                ElapsedTimeString = timeSpan.ToString(@"h' hours, 'm' minutes, 's' seconds'");
+            }
+            else
+            {
+                ElapsedTimeString = timeSpan.ToString(@"hh\:mm\:ss");
+            }
             OnPropertyChanged(nameof(ElapsedTimeString));
-        }
-
-        private string ElapsedTimeFormat(double elapsedTime)
-        {
-            int intElapse = (int)elapsedTime;
-            int seconds;
-            int minutes;
-            int hours;
-            hours = Math.DivRem(intElapse, 3600, out intElapse);
-            minutes = Math.DivRem(intElapse, 60, out intElapse);
-            seconds = intElapse;
-            return $"{hours} hours, {minutes} minutes, {seconds} seconds";
         }
     }
 }

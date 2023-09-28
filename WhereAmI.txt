@@ -1,3 +1,4 @@
-Reformat time so it displays minutes as well
+Ability to change style, but no event is caught so it only updates once the time updates.
+Change look in code behind for buttons
 
 StartupUri="MainWindow.xaml" 

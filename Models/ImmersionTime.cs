@@ -14,8 +14,13 @@ namespace ImmersionTrack.Models
         private readonly Timer _timer;
         private DateTime _startTime;
         private bool _isRunning;
-        public double ElapsedTime => _isRunning ? TimeSpan.FromTicks(DateTime.Now.Ticks).TotalSeconds - TimeSpan.FromTicks(_startTime.Ticks).TotalSeconds : 0;
-        public event Action? ElapsedTimeChanged;
+
+        //Previous Implimentation of Elapsed Time
+        //
+        //public double ElapsedTime => _isRunning ? TimeSpan.FromTicks(DateTime.Now.Ticks).TotalSeconds - TimeSpan.FromTicks(_startTime.Ticks).TotalSeconds : 0;
+
+        public TimeSpan ElapsedTime => _isRunning ? DateTime.Now - _startTime : TimeSpan.Zero;
+        public event Action<TimeSpan>? ElapsedTimeChanged;
         public ImmersionTime()
         {
             _timer = new Timer(1000);
@@ -48,7 +53,7 @@ namespace ImmersionTrack.Models
 
         private void OnElapsedTimeChanged()
         {
-            ElapsedTimeChanged?.Invoke();
+            ElapsedTimeChanged?.Invoke(ElapsedTime);
         }
 
     }

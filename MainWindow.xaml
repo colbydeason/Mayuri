@@ -7,7 +7,7 @@
         xmlns:views="clr-namespace:ImmersionTrack.Views"
         xmlns:viewmodels="clr-namespace:ImmersionTrack.ViewModels"
         mc:Ignorable="d"
-        Title="ImmersionTrack" Height="450" Width="1600"
+        Title="ImmersionTrack" Height="500" Width="1600"
         AllowsTransparency="false"
         ResizeMode="CanResizeWithGrip"
         WindowStyle="SingleBorderWindow"
