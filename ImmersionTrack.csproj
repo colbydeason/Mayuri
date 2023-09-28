@@ -5,6 +5,8 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <PackageIcon>MayurIcon.jpg</PackageIcon>
+    <ApplicationIcon>Images\MayurIcon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,7 +14,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Images\MayurIcon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Images\MayuriBlur.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Images\MayurIcon.jpg">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
