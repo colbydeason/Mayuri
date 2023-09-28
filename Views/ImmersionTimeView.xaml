@@ -11,7 +11,7 @@
         <ImageBrush/>
     </UserControl.Background>
     <Grid>
-        <StackPanel Margin="10">
+        <StackPanel Margin="0">
             <StackPanel.Background>
                 <ImageBrush ImageSource="/Views/MayuriBlur.jpg" Stretch="UniformToFill"/>
             </StackPanel.Background>
