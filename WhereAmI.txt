@@ -1,4 +1,4 @@
-Ability to change style, but no event is caught so it only updates once the time updates.
+Ability to change style, but no event is caught so it only updates once the time updates. Trying to use Checked event but don't know how to impliment 
 Change look in code behind for buttons
 
 StartupUri="MainWindow.xaml" 

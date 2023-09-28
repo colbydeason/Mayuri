@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace ImmersionTrack.ViewModels
@@ -20,6 +21,7 @@ namespace ImmersionTrack.ViewModels
 
         public string ElapsedTimeString { get; set; } = "Time to immerse!";
         public ICommand StartAndStopCommand { get; }
+        //Impliment StyleChanged event here, then subscribe somewhere
         private bool _toggleStyle = false;
         public bool ToggleStyle
         {
