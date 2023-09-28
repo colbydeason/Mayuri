@@ -41,7 +41,7 @@ namespace ImmersionTrack.Models
             return _isRunning;
         }
 
-        private void TimerElapsed(object sender, ElapsedEventArgs e)
+        private void TimerElapsed(object? sender, ElapsedEventArgs e)
         {
             OnElapsedTimeChanged();
         }

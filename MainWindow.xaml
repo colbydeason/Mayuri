@@ -7,7 +7,10 @@
         xmlns:views="clr-namespace:ImmersionTrack.Views"
         xmlns:viewmodels="clr-namespace:ImmersionTrack.ViewModels"
         mc:Ignorable="d"
-        Title="Stopwatch" Height="450" Width="800">
+        Title="Stopwatch" Height="450" Width="1600">
+    <Window.Background>
+        <ImageBrush/>
+    </Window.Background>
     <Grid>
         <ContentControl Content="{Binding CurrentViewModel}">
             <ContentControl.Resources>
@@ -15,6 +18,10 @@
                     <views:ImmersionTimeView/>
                 </DataTemplate>
             </ContentControl.Resources>
+            <ContentControl.Background>
+                <ImageBrush/>
+            </ContentControl.Background>
         </ContentControl>
     </Grid>
+    
 </Window>

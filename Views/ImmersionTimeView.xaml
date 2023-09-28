@@ -6,12 +6,19 @@
              xmlns:local="clr-namespace:ImmersionTrack.Views"
              xmlns:viewModel ="clr-namespace:ImmersionTrack.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="1600">
+    <UserControl.Background>
+        <ImageBrush/>
+    </UserControl.Background>
     <Grid>
         <StackPanel Margin="10">
-            <Label HorizontalAlignment="Center" FontSize="50" Margin="20">ImmersionTime</Label>
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="100" Text="{Binding ElapsedTime, StringFormat=N0}"/>
-            <Button FontSize="50" Margin="20" Command="{Binding StartAndStopCommand}">Start/Stop</Button>
+            <StackPanel.Background>
+                <ImageBrush ImageSource="/Views/MayuriBlur.jpg" Stretch="UniformToFill"/>
+            </StackPanel.Background>
+            <Label Foreground="WhiteSmoke" FontWeight="ExtraBold" HorizontalAlignment="Center" FontSize="60" Margin="20">ImmersionTime</Label>
+            <TextBlock Foreground="WhiteSmoke" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="100" Text="{Binding ElapsedTimeString}"/>
+            <Button Background="Transparent" Foreground="WhiteSmoke" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="WhiteSmoke" 
+                    Padding="60, 0" BorderThickness="5" FontSize="50" Margin="20, 20, 20, 0" MaxWidth="500" Command="{Binding StartAndStopCommand}">Start/Stop</Button>
         </StackPanel>
     </Grid>
 </UserControl>
