@@ -25,6 +25,6 @@
             Margin="20" BorderThickness="2" BorderBrush="WhiteSmoke" Padding="10, 2"
             IsChecked="{Binding ToggleStyle}" x:Name="ToggleButton"/>
         <Button Grid.Row="1" Background="Transparent" Foreground="WhiteSmoke" HorizontalAlignment="Right" VerticalAlignment="Bottom" BorderBrush="WhiteSmoke" 
-            Padding="45, 0" BorderThickness="0" FontSize="35" Margin="20" MaxWidth="500">Home</Button>
+            Padding="45, 0" BorderThickness="0" FontSize="35" Margin="20" MaxWidth="500" Command="{Binding NavigateCommand}" >Home</Button>
     </Grid>
 </UserControl>

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using Mayuri.ViewModels;
+using Mayuri.Stores;
 
 namespace Mayuri
 {
@@ -15,9 +16,11 @@ namespace Mayuri
         private readonly ImmersionTime _immersionTime;
         protected override void OnStartup(StartupEventArgs e)
         {
+            NavigationStore navigationStore = new NavigationStore();
+            navigationStore.CurrentViewModel = new MenuViewModel(navigationStore, _immersionTime);
             MainWindow = new MainWindow()
             {
-                DataContext = new MainViewModel(_immersionTime)
+                DataContext = new MainViewModel(navigationStore)
             };
             MainWindow.Show();
 

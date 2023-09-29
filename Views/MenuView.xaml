@@ -12,6 +12,6 @@
     <Grid>
         <Label Background="Transparent" Foreground="WhiteSmoke" FontWeight="ExtraBold"  FontSize="60" Padding="40, 20, 0, 0">Mayuri</Label>
         <Button HorizontalAlignment="Center" VerticalAlignment="Center" Padding="60, 20" FontSize="100" Background="Transparent" Foreground="WhiteSmoke"
-                BorderThickness="0">Timer</Button>
+                BorderThickness="0" Command="{Binding NavigateCommand}">Timer</Button>
     </Grid>
 </UserControl>
