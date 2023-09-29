@@ -27,9 +27,9 @@ namespace Mayuri.Models
 
         public void StartWatch()
         {
-            OnElapsedTimeChanged();
             _timer.Start();
             _startTime = DateTime.Now;
+            OnElapsedTimeChanged();
             _isRunning = true;
         }
 
