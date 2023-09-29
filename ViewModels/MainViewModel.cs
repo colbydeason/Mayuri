@@ -13,6 +13,7 @@ namespace ImmersionTrack.ViewModels
         public MainViewModel(ImmersionTime stopWatch)
         {
             CurrentViewModel = new ImmersionTimeViewModel(stopWatch);
+            //CurrentViewModel = new MenuViewModel(); 
         }
     }
 }

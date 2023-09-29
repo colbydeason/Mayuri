@@ -46,11 +46,11 @@ namespace ImmersionTrack.ViewModels
         {
             if (ToggleStyle == false)
             {
-                ElapsedTimeString = timeSpan.ToString(@"h' hours, 'm' minutes, 's' seconds'");
+                ElapsedTimeString = timeSpan.ToString(@"hh\:mm\:ss");
             }
             else
             {
-                ElapsedTimeString = timeSpan.ToString(@"hh\:mm\:ss");
+                ElapsedTimeString = timeSpan.ToString(@"h'h 'm'm 's's'");
             }
             OnPropertyChanged(nameof(ElapsedTimeString));
         }

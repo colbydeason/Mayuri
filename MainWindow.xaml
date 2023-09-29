@@ -7,21 +7,22 @@
         xmlns:views="clr-namespace:ImmersionTrack.Views"
         xmlns:viewmodels="clr-namespace:ImmersionTrack.ViewModels"
         mc:Ignorable="d"
-        Title="ImmersionTrack" Height="500" Width="1600"
+        Title="ImmersionTrack"
         AllowsTransparency="false"
         ResizeMode="CanResizeWithGrip"
         WindowStyle="SingleBorderWindow"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Height="500" Width="900">
     <Grid>
         <ContentControl Content="{Binding CurrentViewModel}">
             <ContentControl.Resources>
                 <DataTemplate DataType="{x:Type viewmodels:ImmersionTimeViewModel}">
                     <views:ImmersionTimeView/>
                 </DataTemplate>
+                <DataTemplate DataType="{x:Type viewmodels:MenuViewModel}">
+                    <views:MenuView/>
+                </DataTemplate>
             </ContentControl.Resources>
-            <ContentControl.Background>
-                <ImageBrush/>
-            </ContentControl.Background>
         </ContentControl>
     </Grid>
 

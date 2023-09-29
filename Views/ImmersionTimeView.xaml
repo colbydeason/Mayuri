@@ -5,23 +5,26 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ImmersionTrack.Views"
              xmlns:viewModel ="clr-namespace:ImmersionTrack.ViewModels"
-             mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="1600">
+             mc:Ignorable="d"
+             d:DesignHeight="500" d:DesignWidth="900">
     <UserControl.Background>
-        <ImageBrush/>
+        <ImageBrush ImageSource="/Images/MayuriBlur.jpg" Stretch="UniformToFill"/>
     </UserControl.Background>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         <StackPanel Margin="0">
-            <StackPanel.Background>
-                <ImageBrush ImageSource="/Images/MayuriBlur.jpg" Stretch="UniformToFill"/>
-            </StackPanel.Background>
             <Label Foreground="WhiteSmoke" FontWeight="ExtraBold" HorizontalAlignment="Center" FontSize="60" Margin="20">ImmersionTime</Label>
             <TextBlock Foreground="WhiteSmoke" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="100" Text="{Binding ElapsedTimeString}"/>
             <Button Background="Transparent" Foreground="WhiteSmoke" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="WhiteSmoke" 
                     Padding="60, 0" BorderThickness="0" FontSize="50" Margin="20, 20, 20, 0" MaxWidth="500" Command="{Binding StartAndStopCommand}">Start/Stop</Button>
-            <ToggleButton Foreground="WhiteSmoke" Background="Transparent" FontSize="20" Content="Toggle Style" HorizontalAlignment="Left" VerticalAlignment="Bottom"
-                          Margin="20, 50, 0, 0" BorderThickness="2" BorderBrush="WhiteSmoke" Padding="10, 2"
-                          IsChecked="{Binding ToggleStyle}" x:Name="ToggleButton"/>
         </StackPanel>
+        <ToggleButton Grid.Row="1" Foreground="WhiteSmoke" Background="Transparent" FontSize="20" Content="Toggle Style" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+            Margin="20" BorderThickness="2" BorderBrush="WhiteSmoke" Padding="10, 2"
+            IsChecked="{Binding ToggleStyle}" x:Name="ToggleButton"/>
+        <Button Grid.Row="1" Background="Transparent" Foreground="WhiteSmoke" HorizontalAlignment="Right" VerticalAlignment="Bottom" BorderBrush="WhiteSmoke" 
+            Padding="45, 0" BorderThickness="0" FontSize="35" Margin="20" MaxWidth="500">Home</Button>
     </Grid>
 </UserControl>

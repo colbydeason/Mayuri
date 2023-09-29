@@ -1,4 +1,10 @@
 Ability to change style, but no event is caught so it only updates once the time updates. Trying to use Checked event but don't know how to impliment 
 Change look in code behind for buttons
+Add Style sheet
 
-StartupUri="MainWindow.xaml" 
+StartupUri="MainWindow.xaml" - > OG startup 
+
+d:DesignHeight="500" d:DesignWidth="1600" - > desired values for immersion time
+mc:Ignorable="d" - > design time values, don't show up on application
+SizeToContent="WidthAndHeight" - > for mainwindow
+Height="450" Width="800" - > OG Window size
