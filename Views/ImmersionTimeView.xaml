@@ -20,6 +20,8 @@
             <TextBlock Foreground="WhiteSmoke" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="100" Text="{Binding ElapsedTimeString}"/>
             <Button Background="Transparent" Foreground="WhiteSmoke" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="WhiteSmoke" 
                     Padding="60, 0" BorderThickness="0" FontSize="50" Margin="20, 20, 20, 0" MaxWidth="500" Command="{Binding StartAndStopCommand}">Start/Stop</Button>
+            <Button Background="Transparent" Foreground="WhiteSmoke" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="WhiteSmoke" 
+        Padding="60, 0" BorderThickness="0" FontSize="25" Margin="0" MaxWidth="500" Command="{Binding ResetTimeCommand}">Reset</Button>
         </StackPanel>
         <ToggleButton Grid.Row="1" Foreground="WhiteSmoke" Background="Transparent" FontSize="20" Content="Toggle Style" HorizontalAlignment="Left" VerticalAlignment="Bottom"
             Margin="20" BorderThickness="2" BorderBrush="WhiteSmoke" Padding="10, 2"

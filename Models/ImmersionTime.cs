@@ -14,8 +14,10 @@ namespace Mayuri.Models
         private readonly Timer _timer;
         private DateTime _startTime;
         private bool _isRunning;
-
-        public TimeSpan ElapsedTime => _isRunning ? DateTime.Now - _startTime : TimeSpan.Zero;
+        private bool _isReset = true;
+        private TimeSpan _totalTime = TimeSpan.Zero;
+        private TimeSpan _currTimerTime => _isRunning ? DateTime.Now - _startTime : TimeSpan.Zero;
+        public TimeSpan ElapsedTime => _currTimerTime + _totalTime;
         public event Action<TimeSpan>? ElapsedTimeChanged;
 
         public ImmersionTime()
@@ -35,8 +37,16 @@ namespace Mayuri.Models
 
         public void StopWatch()
         {
+            _totalTime += _currTimerTime;
             _timer.Stop();
             _isRunning = false;
+        }
+
+        public void Reset()
+        {
+            _totalTime = TimeSpan.Zero;
+            _startTime = DateTime.Now;
+            OnElapsedTimeChanged();
         }
         public bool IsRunning()
         {

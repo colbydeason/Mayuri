@@ -19,6 +19,7 @@ namespace Mayuri.ViewModels
         public string ElapsedTimeString { get; set; }
         public ICommand StartAndStopCommand { get; }
         public ICommand NavigateCommand { get; }
+        public ICommand ResetTimeCommand { get; }
         //Impliment StyleChanged event here, then subscribe somewhere
         private bool _toggleStyle = false;
         public bool ToggleStyle
@@ -38,6 +39,7 @@ namespace Mayuri.ViewModels
         {
             _immersionTime = immersionTime;
             StartAndStopCommand = new StartAndStopCommand(this, immersionTime);
+            ResetTimeCommand = new ResetTimeCommand(immersionTime);
             NavigateCommand = new NavigateCommand<MenuViewModel>(navigationStore, () => new MenuViewModel(navigationStore, immersionTime));
             _immersionTime.ElapsedTimeChanged += OnElapsedTimeChanged;
             OnElapsedTimeChanged(immersionTime.ElapsedTime);

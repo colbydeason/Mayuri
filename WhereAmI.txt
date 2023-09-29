@@ -1,6 +1,4 @@
-Ability to change style, but no event is caught so it only updates once the time updates. Trying to use Checked event but don't know how to impliment 
-Change look in code behind for buttons
-Add Style sheet
+Add previous stopped time in view, and use it so when the view switches and the ImmersionTime is stopped, it doesn't reset the view, but shows the previous time.
 
 StartupUri="MainWindow.xaml" - > OG startup 
 
