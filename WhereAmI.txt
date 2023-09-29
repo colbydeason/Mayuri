@@ -1,4 +1,5 @@
-Add previous stopped time in view, and use it so when the view switches and the ImmersionTime is stopped, it doesn't reset the view, but shows the previous time.
+Add previous time above current time so if it is accidentally reset it can be seen. (maybe add)
+Add a way to maintain the toggled style when switching windows
 
 StartupUri="MainWindow.xaml" - > OG startup 
 

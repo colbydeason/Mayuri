@@ -16,8 +16,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel Margin="0">
-            <Label Foreground="WhiteSmoke" FontWeight="ExtraBold" HorizontalAlignment="Center" FontSize="60" Margin="20">ImmersionTime</Label>
-            <TextBlock Foreground="WhiteSmoke" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="100" Text="{Binding ElapsedTimeString}"/>
+            <TextBlock Margin="0, 100, 0, 0" Foreground="WhiteSmoke" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="100" Text="{Binding ElapsedTimeString}"/>
             <Button Background="Transparent" Foreground="WhiteSmoke" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="WhiteSmoke" 
                     Padding="60, 0" BorderThickness="0" FontSize="50" Margin="20, 20, 20, 0" MaxWidth="500" Command="{Binding StartAndStopCommand}">Start/Stop</Button>
             <Button Background="Transparent" Foreground="WhiteSmoke" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="WhiteSmoke" 
