@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ImmersionTrack.ViewModels
+namespace Mayuri.ViewModels
 {
     public class MenuViewModel : ViewModelBase
     {

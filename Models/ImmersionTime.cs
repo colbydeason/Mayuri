@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.ComponentModel;
 using System.Timers;
 
-namespace ImmersionTrack.Models
+namespace Mayuri.Models
 {
     public class ImmersionTime
     {
@@ -15,12 +15,9 @@ namespace ImmersionTrack.Models
         private DateTime _startTime;
         private bool _isRunning;
 
-        //Previous Implimentation of Elapsed Time
-        //
-        //public double ElapsedTime => _isRunning ? TimeSpan.FromTicks(DateTime.Now.Ticks).TotalSeconds - TimeSpan.FromTicks(_startTime.Ticks).TotalSeconds : 0;
-
         public TimeSpan ElapsedTime => _isRunning ? DateTime.Now - _startTime : TimeSpan.Zero;
         public event Action<TimeSpan>? ElapsedTimeChanged;
+
         public ImmersionTime()
         {
             _timer = new Timer(1000);

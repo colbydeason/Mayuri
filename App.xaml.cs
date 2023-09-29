@@ -1,4 +1,4 @@
-﻿using ImmersionTrack.Models;
+﻿using Mayuri.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -6,18 +6,18 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using ImmersionTrack.ViewModels;
+using Mayuri.ViewModels;
 
-namespace ImmersionTrack
+namespace Mayuri
 {
     public partial class App : Application
     {
-        private readonly ImmersionTime _stopWatch;
+        private readonly ImmersionTime _immersionTime;
         protected override void OnStartup(StartupEventArgs e)
         {
             MainWindow = new MainWindow()
             {
-                DataContext = new MainViewModel(_stopWatch)
+                DataContext = new MainViewModel(_immersionTime)
             };
             MainWindow.Show();
 
@@ -26,7 +26,7 @@ namespace ImmersionTrack
 
         public App()
         {
-            _stopWatch = new ImmersionTime();
+            _immersionTime = new ImmersionTime();
         }
     }
 }

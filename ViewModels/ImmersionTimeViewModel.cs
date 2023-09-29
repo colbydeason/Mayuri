@@ -1,5 +1,5 @@
-﻿using ImmersionTrack.Commands;
-using ImmersionTrack.Models;
+﻿using Mayuri.Commands;
+using Mayuri.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,15 +9,11 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace ImmersionTrack.ViewModels
+namespace Mayuri.ViewModels
 {
     public class ImmersionTimeViewModel : ViewModelBase
     {
-        private ImmersionTime _stopWatch;
-
-        //Previous Implimentation of ElapsedTimeString
-        //
-        //public string ElapsedTimeString => _stopWatch.ElapsedTime.ToString();
+        private ImmersionTime _immersionTime;
 
         public string ElapsedTimeString { get; set; } = "Time to immerse!";
         public ICommand StartAndStopCommand { get; }
@@ -35,14 +31,14 @@ namespace ImmersionTrack.ViewModels
             }
         }
         
-        public ImmersionTimeViewModel(ImmersionTime stopWatch)
+        public ImmersionTimeViewModel(ImmersionTime immersionTime)
         {
-            _stopWatch = stopWatch;
-            StartAndStopCommand = new StartAndStopCommand(this, stopWatch);
-            _stopWatch.ElapsedTimeChanged += StopWatchElapsedTimeChanged;
+            _immersionTime = immersionTime;
+            StartAndStopCommand = new StartAndStopCommand(this, immersionTime);
+            _immersionTime.ElapsedTimeChanged += OnElapsedTimeChanged;
         }
 
-        private void StopWatchElapsedTimeChanged(TimeSpan timeSpan)
+        private void OnElapsedTimeChanged(TimeSpan timeSpan)
         {
             if (ToggleStyle == false)
             {
