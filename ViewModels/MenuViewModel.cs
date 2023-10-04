@@ -13,10 +13,10 @@ namespace Mayuri.ViewModels
 {
     public class MenuViewModel : ViewModelBase
     {
-        public ICommand NavigateCommand { get; }
+        public ICommand NavigateStopwatchCommand { get; }
         public MenuViewModel(NavigationStore navigationStore)
         {
-            NavigateCommand = new NavigateCommand<ImmersionTimeViewModel>(navigationStore, () => new ImmersionTimeViewModel(navigationStore));
+            NavigateStopwatchCommand = new NavigateCommand<ImmersionTimeViewModel>(navigationStore, () => new ImmersionTimeViewModel(navigationStore));
         }
     }
 }

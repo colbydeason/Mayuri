@@ -17,7 +17,7 @@
         <Label Grid.Row="0" Background="Transparent" Foreground="WhiteSmoke" FontWeight="ExtraBold"  FontSize="60" Padding="40, 20, 0, 0">Mayuri</Label>
         <StackPanel HorizontalAlignment="Right">
             <Button HorizontalAlignment="Center" VerticalAlignment="Center" Padding="30, 10" FontSize="25" Background="Transparent" Foreground="WhiteSmoke"
-                BorderThickness="0" Command="{Binding NavigateCommand}">Stopwatch</Button>
+                BorderThickness="0" Command="{Binding NavigateStopwatchCommand}">Stopwatch</Button>
             <Button HorizontalAlignment="Center" VerticalAlignment="Center" Padding="30, 10" FontSize="25" Background="Transparent" Foreground="WhiteSmoke"
                 BorderThickness="0">Create Log</Button>
             <Button HorizontalAlignment="Center" VerticalAlignment="Center" Padding="30, 10" FontSize="25" Background="Transparent" Foreground="WhiteSmoke"
