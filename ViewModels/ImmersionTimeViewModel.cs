@@ -1,6 +1,7 @@
 ﻿using Mayuri.Commands;
 using Mayuri.Models;
 using Mayuri.Stores;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +15,7 @@ namespace Mayuri.ViewModels
 {
     public class ImmersionTimeViewModel : ViewModelBase
     {
-        private ImmersionTime _immersionTime;
+        private IImmersionTimeService _immersionTime;
 
         public string ElapsedTimeString { get; set; }
         public ICommand StartAndStopCommand { get; }
@@ -31,18 +32,18 @@ namespace Mayuri.ViewModels
             set
             {
                 _toggleStyle = value;
-                OnElapsedTimeChanged(_immersionTime.ElapsedTime);
+                OnElapsedTimeChanged(_immersionTime.ElapsedTime());
             }
         }
         
-        public ImmersionTimeViewModel(NavigationStore navigationStore,ImmersionTime immersionTime)
+        public ImmersionTimeViewModel(NavigationStore navigationStore)
         {
-            _immersionTime = immersionTime;
-            StartAndStopCommand = new StartAndStopCommand(this, immersionTime);
-            ResetTimeCommand = new ResetTimeCommand(immersionTime);
-            NavigateCommand = new NavigateCommand<MenuViewModel>(navigationStore, () => new MenuViewModel(navigationStore, immersionTime));
+            _immersionTime = App.Current.Services.GetService<IImmersionTimeService>();
+            StartAndStopCommand = new StartAndStopCommand(this, _immersionTime);
+            ResetTimeCommand = new ResetTimeCommand(_immersionTime);
+            NavigateCommand = new NavigateCommand<MenuViewModel>(navigationStore, () => new MenuViewModel(navigationStore));
             _immersionTime.ElapsedTimeChanged += OnElapsedTimeChanged;
-            OnElapsedTimeChanged(immersionTime.ElapsedTime);
+            OnElapsedTimeChanged(_immersionTime.ElapsedTime());
         }
 
         private void OnElapsedTimeChanged(TimeSpan timeSpan)

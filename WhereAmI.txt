@@ -1,5 +1,4 @@
-Add previous time above current time so if it is accidentally reset it can be seen. (maybe add)
-Add a way to maintain the toggled style when switching windows
+Working DI, possibly create a service for navigation so it doesn't need to be in constructor.
 
 StartupUri="MainWindow.xaml" - > OG startup 
 

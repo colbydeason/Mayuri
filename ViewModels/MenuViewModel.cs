@@ -14,9 +14,9 @@ namespace Mayuri.ViewModels
     public class MenuViewModel : ViewModelBase
     {
         public ICommand NavigateCommand { get; }
-        public MenuViewModel(NavigationStore navigationStore, ImmersionTime immersionTime)
+        public MenuViewModel(NavigationStore navigationStore)
         {
-            NavigateCommand = new NavigateCommand<ImmersionTimeViewModel>(navigationStore, () => new ImmersionTimeViewModel(navigationStore, immersionTime));
+            NavigateCommand = new NavigateCommand<ImmersionTimeViewModel>(navigationStore, () => new ImmersionTimeViewModel(navigationStore));
         }
     }
 }

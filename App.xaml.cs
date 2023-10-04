@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 using System.Windows;
 using Mayuri.ViewModels;
 using Mayuri.Stores;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Mayuri
 {
     public partial class App : Application
     {
-        private readonly ImmersionTime _immersionTime;
         protected override void OnStartup(StartupEventArgs e)
         {
             NavigationStore navigationStore = new NavigationStore();
-            navigationStore.CurrentViewModel = new MenuViewModel(navigationStore, _immersionTime);
+            navigationStore.CurrentViewModel = new MenuViewModel(navigationStore);
             MainWindow = new MainWindow()
             {
                 DataContext = new MainViewModel(navigationStore)
@@ -29,7 +29,18 @@ namespace Mayuri
 
         public App()
         {
-            _immersionTime = new ImmersionTime();
+            Services = ConfigureServices();
+        }
+
+        public new static App Current => (App)Application.Current;
+        public IServiceProvider Services { get; }
+        private static IServiceProvider ConfigureServices()
+        {
+            var services = new ServiceCollection();
+
+            services.AddSingleton<IImmersionTimeService, ImmersionTimeService>();
+
+            return services.BuildServiceProvider();
         }
     }
 }
