@@ -1,4 +1,4 @@
-﻿using Mayuri.Models;
+﻿using Mayuri.Services;
 using Mayuri.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -12,9 +12,9 @@ namespace Mayuri.Commands
 {
     public class StartAndStopCommand : CommandBase
     {
-        private readonly ImmersionTime _immersionTime;
+        private readonly IImmersionTimeService _immersionTime;
         private readonly ImmersionTimeViewModel _viewModel;
-        public StartAndStopCommand(ImmersionTimeViewModel vm, ImmersionTime immersionTime)
+        public StartAndStopCommand(ImmersionTimeViewModel vm, IImmersionTimeService immersionTime)
         {
             _immersionTime = immersionTime;
             _viewModel = vm;

@@ -7,20 +7,27 @@ using System.Diagnostics;
 using System.ComponentModel;
 using System.Timers;
 
-namespace Mayuri.Models
+namespace Mayuri.Services
 {
-    public class ImmersionTime
+    public interface IImmersionTimeService
+    {
+        public void StartWatch();
+        public void StopWatch();
+        public void Reset();
+        public bool IsRunning();
+        public TimeSpan ElapsedTime();
+        public event Action<TimeSpan> ElapsedTimeChanged;
+    }
+    public class ImmersionTimeService : IImmersionTimeService
     {
         private readonly Timer _timer;
         private DateTime _startTime;
         private bool _isRunning;
-        private bool _isReset = true;
         private TimeSpan _totalTime = TimeSpan.Zero;
         private TimeSpan _currTimerTime => _isRunning ? DateTime.Now - _startTime : TimeSpan.Zero;
-        public TimeSpan ElapsedTime => _currTimerTime + _totalTime;
         public event Action<TimeSpan>? ElapsedTimeChanged;
 
-        public ImmersionTime()
+        public ImmersionTimeService()
         {
             _timer = new Timer(1000);
             _timer.Elapsed += TimerElapsed;
@@ -60,7 +67,11 @@ namespace Mayuri.Models
 
         private void OnElapsedTimeChanged()
         {
-            ElapsedTimeChanged?.Invoke(ElapsedTime);
+            ElapsedTimeChanged?.Invoke(ElapsedTime());
+        }
+        public TimeSpan ElapsedTime()
+        {
+            return _currTimerTime + _totalTime;
         }
 
     }

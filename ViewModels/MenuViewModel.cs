@@ -1,5 +1,5 @@
 ﻿using Mayuri.Commands;
-using Mayuri.Models;
+using Mayuri.Services;
 using Mayuri.Stores;
 using Mayuri.Views;
 using System;
@@ -13,10 +13,10 @@ namespace Mayuri.ViewModels
 {
     public class MenuViewModel : ViewModelBase
     {
-        public ICommand NavigateCommand { get; }
-        public MenuViewModel(NavigationStore navigationStore, ImmersionTime immersionTime)
+        public ICommand NavigateStopwatchCommand { get; }
+        public MenuViewModel(NavigationStore navigationStore)
         {
-            NavigateCommand = new NavigateCommand<ImmersionTimeViewModel>(navigationStore, () => new ImmersionTimeViewModel(navigationStore, immersionTime));
+            NavigateStopwatchCommand = new NavigateCommand<ImmersionTimeViewModel>(navigationStore, () => new ImmersionTimeViewModel(navigationStore));
         }
     }
 }
