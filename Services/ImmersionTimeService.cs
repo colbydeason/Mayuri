@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.ComponentModel;
 using System.Timers;
 
-namespace Mayuri.Models
+namespace Mayuri.Services
 {
     public interface IImmersionTimeService
     {
