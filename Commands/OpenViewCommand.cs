@@ -29,6 +29,7 @@ namespace Mayuri.Commands
                 DataContext = _navigationStore
             };
             pop.Show();
+            //pop.ShowDialog();
             _isOpen = true;
         }
 

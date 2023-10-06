@@ -2,6 +2,7 @@ Working DI, possibly create a service for navigation so it doesn't need to be in
 Added connection (?) to the database through Sequel server, but don't know how to use it now.
 
 Data Context works, make changes so you can use main window at the same time, but can't open another create source window
+When the button reloads, the canExecute reloads and it can open a new one
 
 StartupUri="MainWindow.xaml" - > OG startup 
 
