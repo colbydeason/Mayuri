@@ -18,14 +18,14 @@
             <TextBlock Text="Name"/>
             <TextBox/>
             <TextBlock Text="Description"/>
-            <TextBox MinHeight="60"/>
+            <TextBox TextWrapping="Wrap" MinHeight="60"/>
             <TextBlock Text="Type"/>
             <ComboBox>
                 <ComboBoxItem Name="test"/>
                 <ComboBoxItem Name="test2"/>
             </ComboBox>
             <StackPanel HorizontalAlignment="Left">
-                <TextBlock HorizontalAlignment="Center" Text="One Time"/>
+                <TextBlock Height="auto" HorizontalAlignment="Center" Text="One Time"/>
                 <CheckBox HorizontalAlignment="Center"/>
             </StackPanel>
             <StackPanel HorizontalAlignment="Left">
