@@ -28,9 +28,9 @@ namespace Mayuri.Commands
             {
                 DataContext = _navigationStore
             };
-            pop.Show();
-            //pop.ShowDialog();
-            _isOpen = true;
+            //pop.Show();
+            pop.ShowDialog();
+            //_isOpen = true;
         }
 
         public override bool CanExecute(object? parameter)

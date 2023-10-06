@@ -6,7 +6,11 @@
              xmlns:local="clr-namespace:Mayuri.Views"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="400">
-    <Grid Background="WhiteSmoke">
+    <UserControl.Background>
+        <ImageBrush ImageSource="/Images/MayuriBlur.jpg" Stretch="UniformToFill"/>
+    </UserControl.Background>
+
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
@@ -15,14 +19,16 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Column="0" Grid.Row="0" Margin="10">
+            <TextBlock.Foreground>WhiteSmoke</TextBlock.Foreground>
+            <TextBlock.FontSize>16</TextBlock.FontSize>
             <TextBlock Text="Name"/>
             <TextBox/>
             <TextBlock Text="Description"/>
             <TextBox TextWrapping="Wrap" MinHeight="60"/>
             <TextBlock Text="Type"/>
             <ComboBox>
-                <ComboBoxItem Name="test"/>
-                <ComboBoxItem Name="test2"/>
+                <ComboBoxItem Content="Test"/>
+                <ComboBoxItem Content="Test 2"/>
             </ComboBox>
             <StackPanel HorizontalAlignment="Left">
                 <TextBlock Height="auto" HorizontalAlignment="Center" Text="One Time"/>

@@ -10,7 +10,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\LilyChouChouBlur.jpg" />
     <None Remove="Images\MayuriBlur.jpg" />
+    <None Remove="Images\MayuriReachBlur.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,7 +31,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\LilyChouChouBlur.jpg" />
     <Resource Include="Images\MayuriBlur.jpg" />
+    <Resource Include="Images\MayuriReachBlur.jpg" />
   </ItemGroup>
 
   <ItemGroup>
