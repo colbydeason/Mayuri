@@ -19,7 +19,7 @@
             <Button HorizontalAlignment="Center" VerticalAlignment="Center" Padding="30, 10" FontSize="25" Background="Transparent" Foreground="WhiteSmoke"
                 BorderThickness="0" Command="{Binding NavigateStopwatchCommand}">Stopwatch</Button>
             <Button HorizontalAlignment="Center" VerticalAlignment="Center" Padding="30, 10" FontSize="25" Background="Transparent" Foreground="WhiteSmoke"
-                BorderThickness="0">Create Log</Button>
+                BorderThickness="0" Command="{Binding OpenCreateLogView}">Create Log</Button>
             <Button HorizontalAlignment="Center" VerticalAlignment="Center" Padding="30, 10" FontSize="25" Background="Transparent" Foreground="WhiteSmoke"
                 BorderThickness="0" Command="{Binding OpenAddSourceView}" >Add Source</Button>
         </StackPanel>

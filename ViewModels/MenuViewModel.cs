@@ -15,10 +15,12 @@ namespace Mayuri.ViewModels
     {
         public ICommand NavigateStopwatchCommand { get; }
         public ICommand OpenAddSourceView { get; }
+        public ICommand OpenCreateLogView { get; }
         public MenuViewModel(NavigationStore navigationStore)
         {
             NavigateStopwatchCommand = new NavigateCommand<ImmersionTimeViewModel>(navigationStore, () => new ImmersionTimeViewModel(navigationStore));
             OpenAddSourceView = new OpenViewCommand<AddSourceViewModel>(navigationStore, () => new AddSourceViewModel());
+            OpenCreateLogView = new OpenViewCommand<CreateLogViewModel>(navigationStore, () => new CreateLogViewModel());
         }
     }
 }
