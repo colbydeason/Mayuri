@@ -7,7 +7,7 @@
         xmlns:views="clr-namespace:Mayuri.Views"
         xmlns:viewmodels="clr-namespace:Mayuri.ViewModels"
         mc:Ignorable="d"
-        Title="PopupWindow" Height="350" Width="450"
+        Title="Mayuri" Height="350" Width="450"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <ContentControl Content="{Binding PopUpViewModel}">
