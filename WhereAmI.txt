@@ -4,6 +4,8 @@ Added connection (?) to the database through Sequel server, but don't know how t
 Data Context works, make changes so you can use main window at the same time, but can't open another create source window
 When the button reloads, the canExecute reloads and it can open a new one
 
+Figure out why the hell everything is so fucking massive
+
 StartupUri="MainWindow.xaml" - > OG startup 
 
 d:DesignHeight="500" d:DesignWidth="1600" - > desired values for immersion time
