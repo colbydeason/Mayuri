@@ -39,6 +39,7 @@ namespace Mayuri
             var services = new ServiceCollection();
 
             services.AddSingleton<IImmersionTimeService, ImmersionTimeService>();
+            services.AddSingleton<INavigationStore, NavigationStore>();
 
             return services.BuildServiceProvider();
         }

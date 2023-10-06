@@ -12,6 +12,7 @@ namespace Mayuri.ViewModels
     {
         private readonly NavigationStore _navigationStore;
         public ViewModelBase CurrentViewModel => _navigationStore.CurrentViewModel;
+        public ViewModelBase PopUpViewModel => _navigationStore.PopUpViewModel;
         public MainViewModel(NavigationStore navigationStore)
         {
             _navigationStore = navigationStore;

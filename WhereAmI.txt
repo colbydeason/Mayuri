@@ -1,4 +1,8 @@
 Working DI, possibly create a service for navigation so it doesn't need to be in constructor.
+Added connection (?) to the database through Sequel server, but don't know how to use it now.
+
+Data Context works, make changes so you can use main window at the same time, but can't open another create source window
+When the button reloads, the canExecute reloads and it can open a new one
 
 StartupUri="MainWindow.xaml" - > OG startup 
 
@@ -6,3 +10,11 @@ d:DesignHeight="500" d:DesignWidth="1600" - > desired values for immersion time
 mc:Ignorable="d" - > design time values, don't show up on application
 SizeToContent="WidthAndHeight" - > for mainwindow
 Height="450" Width="800" - > OG Window size
+
+Structure ideas:
+	Source: Ability to add a source, restriction on source type and name are the same
+			Ability to view current and past sources
+			Ability to "Complete" a source
+	Log: 
+			Ability to Add a log w/ or w/out the timer value
+			Ability to view logs from certain days or spans of days

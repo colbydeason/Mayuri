@@ -10,7 +10,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\LilyChouChouBlur.jpg" />
     <None Remove="Images\MayuriBlur.jpg" />
+    <None Remove="Images\MayuriReachBlur.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,11 +21,19 @@
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.11">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\LilyChouChouBlur.jpg" />
     <Resource Include="Images\MayuriBlur.jpg" />
+    <Resource Include="Images\MayuriReachBlur.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,10 +41,6 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>
