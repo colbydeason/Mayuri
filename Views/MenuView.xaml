@@ -21,7 +21,7 @@
             <Button HorizontalAlignment="Center" VerticalAlignment="Center" Padding="30, 10" FontSize="25" Background="Transparent" Foreground="WhiteSmoke"
                 BorderThickness="0">Create Log</Button>
             <Button HorizontalAlignment="Center" VerticalAlignment="Center" Padding="30, 10" FontSize="25" Background="Transparent" Foreground="WhiteSmoke"
-                BorderThickness="0">Add Source</Button>
+                BorderThickness="0" Command="{Binding OpenAddSourceView}" >Add Source</Button>
         </StackPanel>
     </Grid>
 </UserControl>

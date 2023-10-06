@@ -8,7 +8,11 @@ using System.Threading.Tasks;
 
 namespace Mayuri.Stores
 {
-    public class NavigationStore
+    public interface INavigationStore
+    {
+        public event Action? CurrentViewModelChanged;
+    }
+    public class NavigationStore : INavigationStore
     {
         public event Action? CurrentViewModelChanged;
         private ViewModelBase _currentViewModel;
@@ -24,6 +28,18 @@ namespace Mayuri.Stores
                 OnCurrentViewModelChanged();
             }
         }
+        private ViewModelBase _popUpViewModel;
+        public ViewModelBase PopUpViewModel
+        {
+            get
+            {
+                return _popUpViewModel;
+            }
+            set
+            {
+                _popUpViewModel = value;
+            }
+        } 
 
         private void OnCurrentViewModelChanged()
         {

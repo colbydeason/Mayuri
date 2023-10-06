@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Mayuri.Commands
 {
-    internal class NavigateCommand<TViewModel> : CommandBase
+    public class NavigateCommand<TViewModel> : CommandBase
         where TViewModel : ViewModelBase
     {
         private readonly NavigationStore _navigationStore;

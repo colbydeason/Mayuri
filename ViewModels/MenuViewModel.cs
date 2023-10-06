@@ -14,9 +14,11 @@ namespace Mayuri.ViewModels
     public class MenuViewModel : ViewModelBase
     {
         public ICommand NavigateStopwatchCommand { get; }
+        public ICommand OpenAddSourceView { get; }
         public MenuViewModel(NavigationStore navigationStore)
         {
             NavigateStopwatchCommand = new NavigateCommand<ImmersionTimeViewModel>(navigationStore, () => new ImmersionTimeViewModel(navigationStore));
+            OpenAddSourceView = new OpenViewCommand<AddSourceViewModel>(navigationStore, () => new AddSourceViewModel());
         }
     }
 }
