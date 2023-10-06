@@ -21,7 +21,6 @@ namespace Mayuri.ViewModels
         public ICommand StartAndStopCommand { get; }
         public ICommand NavigateCommand { get; }
         public ICommand ResetTimeCommand { get; }
-        //Impliment StyleChanged event here, then subscribe somewhere
         private bool _toggleStyle = false;
         public bool ToggleStyle
         {

@@ -22,23 +22,22 @@
             <TextBlock.Foreground>WhiteSmoke</TextBlock.Foreground>
             <TextBlock.FontSize>16</TextBlock.FontSize>
             <TextBlock Text="Name"/>
-            <TextBox/>
+            <TextBox Text="{Binding SourceName}"/>
             <TextBlock Text="Description"/>
-            <TextBox TextWrapping="Wrap" MinHeight="60"/>
+            <TextBox TextWrapping="Wrap" MinHeight="60" Text="{Binding SourceDescription}"/>
             <TextBlock Text="Type"/>
             <ComboBox>
-                <ComboBoxItem Content="Test"/>
-                <ComboBoxItem Content="Test 2"/>
+                <ComboBoxItem Content="Anime"/>
             </ComboBox>
             <StackPanel HorizontalAlignment="Left">
                 <TextBlock Height="auto" HorizontalAlignment="Center" Text="One Time"/>
-                <CheckBox HorizontalAlignment="Center"/>
+                <CheckBox HorizontalAlignment="Center" IsChecked="{Binding SourceOneTime}"/>
             </StackPanel>
             <StackPanel HorizontalAlignment="Left">
                 <TextBlock HorizontalAlignment="Center" Text="Total Time"/>
-                <TextBox/>
+                <TextBox Text="{Binding SourceDuration}"/>
             </StackPanel>
         </StackPanel>
-        <Button Content="Create" MaxHeight="20" MaxWidth="100" Grid.Row="1"/>
+        <Button Content="Create" MaxHeight="20" MaxWidth="100" Grid.Row="1" Command="{Binding CreateSourceCommand}"/>
     </Grid>
 </UserControl>
