@@ -1,5 +1,6 @@
 Working DI, possibly create a service for navigation so it doesn't need to be in constructor.
 Added connection (?) to the database through Sequel server, but don't know how to use it now.
+Following https://www.youtube.com/watch?v=STt3U122wiU&t=372s stopped at 6:40, haven't run migration command yet
 
 Data Context works, make changes so you can use main window at the same time, but can't open another create source window
 When the button reloads, the canExecute reloads and it can open a new one
