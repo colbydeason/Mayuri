@@ -11,16 +11,19 @@ using Mayuri.Stores;
 using Microsoft.Extensions.DependencyInjection;
 using Mayuri.DbContexts;
 using Microsoft.EntityFrameworkCore;
+using Mayuri.Services.SourceProvider;
+using Mayuri.Services.SourceCreators;
+using Mayuri.DBContexts;
 
 namespace Mayuri
 {
     public partial class App : Application
     {
         private const string CONNECTION = "Data Source=mayuri.db";
+        private readonly MayuriDbContextFactory _mayuriDbContextFactory = new MayuriDbContextFactory(CONNECTION);
         protected override void OnStartup(StartupEventArgs e)
         {
-            DbContextOptions options = new DbContextOptionsBuilder().UseSqlite(CONNECTION).Options;
-            using (MayuriDbContext dbContext = new MayuriDbContext(options))
+            using (MayuriDbContext dbContext = _mayuriDbContextFactory.CreateDbContext())
             {
                 dbContext.Database.Migrate();
             }
@@ -49,6 +52,8 @@ namespace Mayuri
 
             services.AddSingleton<IImmersionTimeService, ImmersionTimeService>();
             services.AddSingleton<INavigationStore, NavigationStore>();
+            services.AddSingleton<ISourceProvider, DatabaseSourceProvider>();
+            services.AddSingleton<ISourceCreator, DatabaseSourceCreator>();
 
             return services.BuildServiceProvider();
         }
