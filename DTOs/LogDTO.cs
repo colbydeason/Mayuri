@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mayuri.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -11,7 +12,6 @@ namespace Mayuri.DTOs
     {
         [Key]
         public Guid LogId { get; set; }
-        public 
-
+        public int SourceId { get; set; }
     }
 }
