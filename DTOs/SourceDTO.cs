@@ -14,7 +14,7 @@ namespace Mayuri.DTOs
         public Guid SourceId { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
-        public SourceType Type { get; set; }
+        public string? Type { get; set; }
         public bool OneTime { get; set; }
         public bool Completed { get; set; }
         public int TotalDuration { get; set; }

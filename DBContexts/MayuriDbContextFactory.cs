@@ -17,7 +17,7 @@ namespace Mayuri.DBContexts
         }
         public MayuriDbContext CreateDbContext()
         {
-            DbContextOptions options = new DbContextOptionsBuilder().UseSqlite("_connectionString").Options;
+            DbContextOptions options = new DbContextOptionsBuilder().UseSqlite(_connectionString).Options;
             return new MayuriDbContext(options);
         }
     }

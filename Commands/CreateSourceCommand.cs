@@ -32,11 +32,9 @@ namespace Mayuri.Commands
         }
         public override bool CanExecute(object? parameter)
         {
-            if (_vm.SourceName != String.Empty && _vm.SourceType != 0)
-            {
-                return true;
-            }
-            else { return false; }
+            return !string.IsNullOrEmpty(_vm.SourceName) &&
+                !string.IsNullOrEmpty(_vm.SourceType) &&
+                base.CanExecute(parameter);
         }
     }
 }

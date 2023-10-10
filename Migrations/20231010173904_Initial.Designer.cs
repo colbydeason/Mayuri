@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Mayuri.Migrations
 {
     [DbContext(typeof(MayuriDbContext))]
-    [Migration("20231009143741_Initial")]
+    [Migration("20231010173904_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -58,8 +58,8 @@ namespace Mayuri.Migrations
                     b.Property<int>("TotalDuration")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Type")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Type")
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("TEXT");

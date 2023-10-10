@@ -26,7 +26,7 @@ namespace Mayuri.ViewModels
             }
         }
         private string _sourceDescription;
-        public string SourceDescription 
+        public string SourceDescription
         {
             get
             {
@@ -38,8 +38,26 @@ namespace Mayuri.ViewModels
                 OnPropertyChanged(nameof(SourceDescription));
             }
         }
-        private SourceType _sourceType;
-        public SourceType SourceType 
+        public static List<string> SourceTypeList
+        {
+            get
+            {
+                return new List<string>
+                {
+                    "Book",
+                    "Anime",
+                    "Manga",
+                    "Visual Novel",
+                    "Video Game",
+                    "Reading",
+                    "Listening",
+                    "Other"
+                };
+            }
+        }
+
+        private string _sourceType;
+        public string SourceType 
         {
             get
             {
@@ -73,7 +91,7 @@ namespace Mayuri.ViewModels
             }
             set
             {
-                _sourceDuration = value;
+                _sourceDuration = (int) value;
                 OnPropertyChanged(nameof(SourceDuration));
             }
         }

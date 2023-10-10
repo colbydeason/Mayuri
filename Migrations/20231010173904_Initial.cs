@@ -30,7 +30,7 @@ namespace Mayuri.Migrations
                     SourceId = table.Column<Guid>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
-                    Type = table.Column<int>(type: "INTEGER", nullable: false),
+                    Type = table.Column<string>(type: "TEXT", nullable: true),
                     OneTime = table.Column<bool>(type: "INTEGER", nullable: false),
                     Completed = table.Column<bool>(type: "INTEGER", nullable: false),
                     TotalDuration = table.Column<int>(type: "INTEGER", nullable: false),

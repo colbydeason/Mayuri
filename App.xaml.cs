@@ -20,12 +20,12 @@ namespace Mayuri
 {
     public partial class App : Application
     {
-        private const string CONNECTION = "Data Source=mayuri.db";
+        private const string CONNECTION_STRING = "Data Source=mayuri.db";
         private readonly MayuriDbContextFactory _mayuriDbContextFactory;
         public App()
         {
             Services = ConfigureServices();
-            _mayuriDbContextFactory = new MayuriDbContextFactory(CONNECTION);
+            _mayuriDbContextFactory = new MayuriDbContextFactory(CONNECTION_STRING);
             ISourceProvider sourceProvider = new DatabaseSourceProvider(_mayuriDbContextFactory);
             ISourceCreator sourceCreator = new DatabaseSourceCreator(_mayuriDbContextFactory);
         }

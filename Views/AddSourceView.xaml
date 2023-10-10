@@ -23,9 +23,9 @@
             <TextBlock Text="Description"/>
             <TextBox TextWrapping="Wrap" MinHeight="60" Text="{Binding SourceDescription, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Text="Type"/>
-            <ComboBox>
-                <ComboBoxItem Content="Anime"/>
-            </ComboBox>
+            <ComboBox ItemsSource="{Binding SourceTypeList}" SelectedItem="{Binding SourceType, UpdateSourceTrigger=PropertyChanged}"
+                      IsSynchronizedWithCurrentItem="True"
+                      Text="Select Source Type"/>
             <StackPanel HorizontalAlignment="Left">
                 <TextBlock Height="auto" HorizontalAlignment="Center" Text="One Time"/>
                 <CheckBox HorizontalAlignment="Center" IsChecked="{Binding SourceOneTime, UpdateSourceTrigger=PropertyChanged}"/>
