@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Mayuri.Commands;
 using Mayuri.Models;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Mayuri.ViewModels
 {
@@ -77,9 +78,11 @@ namespace Mayuri.ViewModels
             }
         }
         public ICommand CreateSourceCommand { get; }
+        private ISourceList _sources;
         public AddSourceViewModel()
         {
-            CreateSourceCommand = new CreateSourceCommand();
+            CreateSourceCommand = new CreateSourceCommand(this, _sources);
+            _sources = App.Current.Services.GetService<ISourceList>();
         }
     }
 }

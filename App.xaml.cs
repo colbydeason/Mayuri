@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using Mayuri.Services.SourceProvider;
 using Mayuri.Services.SourceCreators;
 using Mayuri.DBContexts;
+using Mayuri.Models;
 
 namespace Mayuri
 {
@@ -42,6 +43,8 @@ namespace Mayuri
         public App()
         {
             Services = ConfigureServices();
+            ISourceProvider sourceProvider = new DatabaseSourceProvider(_mayuriDbContextFactory);
+            ISourceCreator sourceCreator = new DatabaseSourceCreator(_mayuriDbContextFactory);
         }
 
         public new static App Current => (App)Application.Current;
@@ -52,8 +55,7 @@ namespace Mayuri
 
             services.AddSingleton<IImmersionTimeService, ImmersionTimeService>();
             services.AddSingleton<INavigationStore, NavigationStore>();
-            services.AddSingleton<ISourceProvider, DatabaseSourceProvider>();
-            services.AddSingleton<ISourceCreator, DatabaseSourceCreator>();
+            services.AddSingleton<ISourceList, SourceList>();
 
             return services.BuildServiceProvider();
         }
