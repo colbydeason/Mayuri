@@ -21,7 +21,14 @@ namespace Mayuri
     public partial class App : Application
     {
         private const string CONNECTION = "Data Source=mayuri.db";
-        private readonly MayuriDbContextFactory _mayuriDbContextFactory = new MayuriDbContextFactory(CONNECTION);
+        private readonly MayuriDbContextFactory _mayuriDbContextFactory;
+        public App()
+        {
+            Services = ConfigureServices();
+            _mayuriDbContextFactory = new MayuriDbContextFactory(CONNECTION);
+            ISourceProvider sourceProvider = new DatabaseSourceProvider(_mayuriDbContextFactory);
+            ISourceCreator sourceCreator = new DatabaseSourceCreator(_mayuriDbContextFactory);
+        }
         protected override void OnStartup(StartupEventArgs e)
         {
             using (MayuriDbContext dbContext = _mayuriDbContextFactory.CreateDbContext())
@@ -40,12 +47,6 @@ namespace Mayuri
             base.OnStartup(e);
         }
 
-        public App()
-        {
-            Services = ConfigureServices();
-            ISourceProvider sourceProvider = new DatabaseSourceProvider(_mayuriDbContextFactory);
-            ISourceCreator sourceCreator = new DatabaseSourceCreator(_mayuriDbContextFactory);
-        }
 
         public new static App Current => (App)Application.Current;
         public IServiceProvider Services { get; }

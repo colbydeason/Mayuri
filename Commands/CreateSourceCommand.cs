@@ -30,5 +30,13 @@ namespace Mayuri.Commands
             }
             _sources.AddSource(newSource);
         }
+        public override bool CanExecute(object? parameter)
+        {
+            if (_vm.SourceName != String.Empty && _vm.SourceType != 0)
+            {
+                return true;
+            }
+            else { return false; }
+        }
     }
 }
