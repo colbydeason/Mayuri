@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Mayuri.Migrations
 {
     [DbContext(typeof(MayuriDbContext))]
-    [Migration("20231010173904_Initial")]
+    [Migration("20231010193739_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -25,6 +25,9 @@ namespace Mayuri.Migrations
                     b.Property<Guid>("LogId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("Duration")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("SourceId")
                         .HasColumnType("INTEGER");

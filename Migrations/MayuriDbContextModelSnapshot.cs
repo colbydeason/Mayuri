@@ -23,6 +23,9 @@ namespace Mayuri.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("Duration")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("SourceId")
                         .HasColumnType("INTEGER");
 

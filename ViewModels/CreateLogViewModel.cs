@@ -1,5 +1,6 @@
 ﻿using Mayuri.Commands;
 using Mayuri.Models;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,9 +39,13 @@ namespace Mayuri.ViewModels
             }
         }
         public ICommand CreateLogCommand { get; }
+        private ISourceList _sources;
+        private ILogList _logs;
         public CreateLogViewModel()
         {
-            CreateLogCommand = new CreateLogCommand(); 
+            _sources = App.Current.Services.GetService<ISourceList>();
+            _logs = App.Current.Services.GetService<ILogList>();
+            CreateLogCommand = new CreateLogCommand(this, _sources, _logs);
         }
     }
 }

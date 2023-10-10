@@ -1,4 +1,4 @@
-﻿using Mayuri.Services.SourceCreators;
+﻿using Mayuri.Services.LogCreators;
 using Mayuri.Services.SourceProvider;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Mayuri.Models
 {
-    public interface ISourceList : ISourceProvider, ISourceCreator
+    public interface ILogList : ISourceProvider, ILogCreator
     {
     }
 }

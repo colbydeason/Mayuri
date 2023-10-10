@@ -31,5 +31,14 @@ namespace Mayuri.Services.SourceProvider
         {
             return new Source(r.Name, r.Description, r.Type, r.OneTime, r.Completed, r.TotalDuration);
         }
+        public async Task<IEnumerable<Source>> GetCurrentSources()
+        {
+            using (MayuriDbContext context = _dbContextFactory.CreateDbContext())
+            {
+                IEnumerable<SourceDTO> sourceDTOs = await context.Sources.Where(r => r.OneTime == false).ToListAsync();
+
+                return sourceDTOs.Select(r => ToSource(r));
+            }
+        }
     }
 }

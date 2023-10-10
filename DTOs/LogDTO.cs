@@ -13,5 +13,6 @@ namespace Mayuri.DTOs
         [Key]
         public Guid LogId { get; set; }
         public int SourceId { get; set; }
+        public int Duration { get; set; }
     }
 }

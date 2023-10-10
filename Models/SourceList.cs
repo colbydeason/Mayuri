@@ -27,9 +27,14 @@ namespace Mayuri.Models
         {
             return await _sourceProvider.GetAllSources();
         }
-        public async Task AddSource(Source source)
+        public async Task CreateSource(Source source)
         {
             await _sourceCreator.CreateSource(source);
+        }
+
+        public async Task<IEnumerable<Source>> GetCurrentSources()
+        {
+            return await _sourceProvider.GetCurrentSources();
         }
     }
 }

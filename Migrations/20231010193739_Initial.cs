@@ -16,7 +16,8 @@ namespace Mayuri.Migrations
                 columns: table => new
                 {
                     LogId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    SourceId = table.Column<int>(type: "INTEGER", nullable: false)
+                    SourceId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Duration = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {

@@ -2,6 +2,7 @@
 using Mayuri.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace Mayuri.Commands
         {
             _vm = viewModel;
             _sources = sources;
+            _vm.PropertyChanged += OnViewModelPropertyChanged;
         }
         public override void Execute(object? parameter)
         {
@@ -28,13 +30,18 @@ namespace Mayuri.Commands
             {
                 newSource = new Source(_vm.SourceName, _vm.SourceDescription, _vm.SourceType, false, false, _vm.SourceDuration);
             }
-            _sources.AddSource(newSource);
+            _sources.CreateSource(newSource);
         }
         public override bool CanExecute(object? parameter)
         {
             return !string.IsNullOrEmpty(_vm.SourceName) &&
                 !string.IsNullOrEmpty(_vm.SourceType) &&
+
                 base.CanExecute(parameter);
+        }
+        private void OnViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            OnCanExecuteChanged();
         }
     }
 }
