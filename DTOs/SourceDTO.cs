@@ -20,5 +20,6 @@ namespace Mayuri.DTOs
         public int TotalDuration { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+        public List<LogDTO> Logs { get; set; } = new();
     }
 }

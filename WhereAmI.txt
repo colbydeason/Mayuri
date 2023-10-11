@@ -15,6 +15,8 @@ Add new view model for the popup windows so they can take in the window in the c
 
 The source dropdown shows name and Guid, I want the front end to know both, display the text, return the selected pair or the key
 
+change db location to appdata, also use new foreign key list / reference for use in total hours
+
 StartupUri="MainWindow.xaml" - > OG startup 
 
 d:DesignHeight="500" d:DesignWidth="1600" - > desired values for immersion time

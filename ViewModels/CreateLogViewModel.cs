@@ -12,7 +12,7 @@ namespace Mayuri.ViewModels
 {
     public class CreateLogViewModel : ViewModelBase
     {
-        private Guid _logSourceId;
+        private Guid _logSourceId = Guid.Empty;
         public Guid LogSourceId
         {
             get
@@ -39,8 +39,8 @@ namespace Mayuri.ViewModels
                 OnPropertyChanged(nameof(LogSource));
             }
         }
-        private int _logDuration;
-        public int LogDuration 
+        private string _logDuration;
+        public string LogDuration 
         {
             get
             {
@@ -48,8 +48,29 @@ namespace Mayuri.ViewModels
             }
             set
             {
+                try
+                {
+                    _logDurationInt = Int32.Parse(value);
+                }
+                catch (FormatException)
+                {
+                    _logDurationInt = 0;
+                }
                 _logDuration = value;
                 OnPropertyChanged(nameof(LogDuration));
+            }
+        }
+        private int _logDurationInt;
+        public int LogDurationInt
+        {
+            get
+            {
+                return _logDurationInt;
+            }
+            set
+            {
+                _logDurationInt = value;
+                OnPropertyChanged(nameof(LogDurationInt));
             }
         }
         public List<KeyValuePair<Guid, string>> CurrentSourcesList => _sources.GetCurrentSourcesList().Result;

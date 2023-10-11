@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Design;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,6 +14,7 @@ namespace Mayuri.DBContexts
     {
         public MayuriDbContext CreateDbContext(string[] args)
         {
+            var dir = Assembly.GetEntryAssembly()!.Location;
             DbContextOptions options = new DbContextOptionsBuilder().UseSqlite("Data Source=mayuri.db").Options;
             return new MayuriDbContext(options);
         }

@@ -2,6 +2,7 @@
 using Mayuri.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,11 +19,24 @@ namespace Mayuri.Commands
             vm = createLogViewModel;
             src = sources;
             lg = logs;
+            vm.PropertyChanged += OnViewModelPropertyChanged;
         }
 
         public override void Execute(object? parameter)
         {
-            lg.CreateLog(new Log(vm.LogDuration, vm.LogSourceId));
+            Log newLog;
+            newLog = new Log(vm.LogDurationInt, vm.LogSourceId);
+            lg.CreateLog(newLog);
+        }
+        public override bool CanExecute(object? parameter)
+        {
+            return (vm.LogDurationInt != 0) && 
+                (vm.LogSourceId != Guid.Empty) &&
+                base.CanExecute(parameter);
+        }
+        private void OnViewModelPropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            OnCanExecuteChanged();
         }
     }
 }
