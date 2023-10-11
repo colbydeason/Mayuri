@@ -12,12 +12,10 @@ namespace Mayuri.Commands
     public class CreateLogCommand : CommandBase
     {
         private readonly CreateLogViewModel vm;
-        private readonly ISourceList src;
         private readonly ILogList lg;
-        public CreateLogCommand(CreateLogViewModel createLogViewModel, ISourceList sources, ILogList logs)
+        public CreateLogCommand(CreateLogViewModel createLogViewModel, ILogList logs)
         {
             vm = createLogViewModel;
-            src = sources;
             lg = logs;
             vm.PropertyChanged += OnViewModelPropertyChanged;
         }

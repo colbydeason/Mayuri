@@ -1,21 +1,11 @@
-Working DI, possibly create a service for navigation so it doesn't need to be in constructor.
-Added connection (?) to the database through Sequel server, but don't know how to use it now.
-Following https://www.youtube.com/watch?v=STt3U122wiU&t=372s, ran migration and have db set up in bind, but no services or
-mappings to actually use it yet (stopped at 16:40, trying to use constructor with services). Now watching https://www.youtube.com/watch?v=Et2khGnrlqc&list=PLLWMQd6PeGY3b89Ni7xsNZddi9wD5Esv2&index=1 
-to learn how connections and queries actually work and how simple they can be without dto, factory, and all that crazy stuff.
-
-Fix Int field for string for duration
-
-Data Context works, make changes so you can use main window at the same time, but can't open another create source window
-When the button reloads, the canExecute reloads and it can open a new one
-
 Fix button programming so it doesn't look like sh*t
 
-Add new view model for the popup windows so they can take in the window in the constructor  (or maybe use an event?) so they close after creation.
-
-The source dropdown shows name and Guid, I want the front end to know both, display the text, return the selected pair or the key
+In OpenView command pass the window to the constructor of the new viewmodel (use new viewmodelbase for popup window)
 
 change db location to appdata, also use new foreign key list / reference for use in total hours
+
+
+
 
 StartupUri="MainWindow.xaml" - > OG startup 
 
