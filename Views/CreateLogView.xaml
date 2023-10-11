@@ -19,8 +19,9 @@
         <TextBlock.FontSize>16</TextBlock.FontSize>
         <StackPanel Margin="10">
             <TextBlock Text="Source" FontSize="20"/>
-            <ComboBox MinWidth="100" ItemsSource="{Binding CurrentSourcesList}" SelectedItem="{Binding LogSource, UpdateSourceTrigger=PropertyChanged}" 
-                      IsSynchronizedWithCurrentItem="True"/>
+            <ComboBox MinWidth="100" ItemsSource="{Binding CurrentSourcesList}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedItem="{Binding LogSourceId, UpdateSourceTrigger=PropertyChanged}" 
+                      IsSynchronizedWithCurrentItem="True">
+            </ComboBox>
             <TextBlock Text="Duration" FontSize="20"/>
             <TextBox Text="{Binding LogDuration, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" MinWidth="100"/>
         </StackPanel>

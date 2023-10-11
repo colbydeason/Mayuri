@@ -13,6 +13,8 @@ Fix button programming so it doesn't look like sh*t
 
 Add new view model for the popup windows so they can take in the window in the constructor  (or maybe use an event?) so they close after creation.
 
+The source dropdown shows name and Guid, I want the front end to know both, display the text, return the selected pair or the key
+
 StartupUri="MainWindow.xaml" - > OG startup 
 
 d:DesignHeight="500" d:DesignWidth="1600" - > desired values for immersion time

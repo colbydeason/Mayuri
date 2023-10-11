@@ -12,8 +12,21 @@ namespace Mayuri.ViewModels
 {
     public class CreateLogViewModel : ViewModelBase
     {
-        private Source _logSource;
-        public Source LogSource
+        private Guid _logSourceId;
+        public Guid LogSourceId
+        {
+            get
+            {
+                return _logSourceId;
+            }
+            set
+            {
+                _logSourceId = value;
+                OnPropertyChanged(nameof(LogSourceId));
+            }
+        }
+        private KeyValuePair<Guid, string> _logSource;
+        public KeyValuePair<Guid, string> LogSource
         {
             get
             {
@@ -21,6 +34,7 @@ namespace Mayuri.ViewModels
             }
             set
             {
+                _logSourceId = value.Key;
                 _logSource = value;
                 OnPropertyChanged(nameof(LogSource));
             }
