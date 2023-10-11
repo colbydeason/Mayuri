@@ -1,12 +1,11 @@
-Working DI, possibly create a service for navigation so it doesn't need to be in constructor.
-Added connection (?) to the database through Sequel server, but don't know how to use it now.
-
-Data Context works, make changes so you can use main window at the same time, but can't open another create source window
-When the button reloads, the canExecute reloads and it can open a new one
-
 Fix button programming so it doesn't look like sh*t
 
-Figure out why the hell everything is so fucking massive
+In OpenView command pass the window to the constructor of the new viewmodel (use new viewmodelbase for popup window)
+
+change db location to appdata, also use new foreign key list / reference for use in total hours
+
+
+
 
 StartupUri="MainWindow.xaml" - > OG startup 
 

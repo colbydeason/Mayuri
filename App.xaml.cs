@@ -9,13 +9,33 @@ using System.Windows;
 using Mayuri.ViewModels;
 using Mayuri.Stores;
 using Microsoft.Extensions.DependencyInjection;
+using Mayuri.DbContexts;
+using Microsoft.EntityFrameworkCore;
+using Mayuri.Services.SourceProvider;
+using Mayuri.Services.SourceCreators;
+using Mayuri.DBContexts;
+using Mayuri.Models;
 
 namespace Mayuri
 {
     public partial class App : Application
     {
+        private const string CONNECTION_STRING = "Data Source=mayuri.db";
+        private readonly MayuriDbContextFactory _mayuriDbContextFactory;
+        public App()
+        {
+            Services = ConfigureServices();
+            _mayuriDbContextFactory = new MayuriDbContextFactory(CONNECTION_STRING);
+            ISourceProvider sourceProvider = new DatabaseSourceProvider(_mayuriDbContextFactory);
+            ISourceCreator sourceCreator = new DatabaseSourceCreator(_mayuriDbContextFactory);
+        }
         protected override void OnStartup(StartupEventArgs e)
         {
+            using (MayuriDbContext dbContext = _mayuriDbContextFactory.CreateDbContext())
+            {
+                dbContext.Database.Migrate();
+            }
+
             NavigationStore navigationStore = new NavigationStore();
             navigationStore.CurrentViewModel = new MenuViewModel(navigationStore);
             MainWindow = new MainWindow()
@@ -27,10 +47,6 @@ namespace Mayuri
             base.OnStartup(e);
         }
 
-        public App()
-        {
-            Services = ConfigureServices();
-        }
 
         public new static App Current => (App)Application.Current;
         public IServiceProvider Services { get; }
@@ -40,6 +56,8 @@ namespace Mayuri
 
             services.AddSingleton<IImmersionTimeService, ImmersionTimeService>();
             services.AddSingleton<INavigationStore, NavigationStore>();
+            services.AddSingleton<ISourceList, SourceList>();
+            services.AddSingleton<ILogList, LogList>();
 
             return services.BuildServiceProvider();
         }

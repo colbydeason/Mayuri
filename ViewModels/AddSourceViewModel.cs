@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Mayuri.Commands;
 using Mayuri.Models;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Mayuri.ViewModels
 {
@@ -25,7 +26,7 @@ namespace Mayuri.ViewModels
             }
         }
         private string _sourceDescription;
-        public string SourceDescription 
+        public string SourceDescription
         {
             get
             {
@@ -37,8 +38,26 @@ namespace Mayuri.ViewModels
                 OnPropertyChanged(nameof(SourceDescription));
             }
         }
-        private SourceType _sourceType;
-        public SourceType SourceType 
+        public static List<string> SourceTypeList
+        {
+            get
+            {
+                return new List<string>
+                {
+                    "Book",
+                    "Anime",
+                    "Manga",
+                    "Visual Novel",
+                    "Video Game",
+                    "Reading",
+                    "Listening",
+                    "Other"
+                };
+            }
+        }
+
+        private string _sourceType;
+        public string SourceType 
         {
             get
             {
@@ -72,14 +91,16 @@ namespace Mayuri.ViewModels
             }
             set
             {
-                _sourceDuration = value;
+                _sourceDuration = (int) value;
                 OnPropertyChanged(nameof(SourceDuration));
             }
         }
         public ICommand CreateSourceCommand { get; }
+        private ISourceList _sources;
         public AddSourceViewModel()
         {
-            CreateSourceCommand = new CreateSourceCommand();
+            _sources = App.Current.Services.GetService<ISourceList>();
+            CreateSourceCommand = new CreateSourceCommand(this, _sources);
         }
     }
 }
