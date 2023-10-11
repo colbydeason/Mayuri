@@ -13,6 +13,8 @@ Source value in log is a source object rn, needs to be the primary key but how d
 
 Fix button programming so it doesn't look like sh*t
 
+Create an object with key as the source ID and display text as the name so it can be shown as the name and when it is passed it uses the ID
+
 StartupUri="MainWindow.xaml" - > OG startup 
 
 d:DesignHeight="500" d:DesignWidth="1600" - > desired values for immersion time

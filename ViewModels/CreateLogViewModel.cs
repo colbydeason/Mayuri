@@ -38,6 +38,7 @@ namespace Mayuri.ViewModels
                 OnPropertyChanged(nameof(LogDuration));
             }
         }
+        public List<string> SourceList;
         public ICommand CreateLogCommand { get; }
         private ISourceList _sources;
         private ILogList _logs;
