@@ -45,7 +45,7 @@ namespace Mayuri.Services.SourceProvider
             List<KeyValuePair<Guid, string>> list = new List<KeyValuePair<Guid, string>>();
             foreach (var s in await GetCurrentSources())
             {
-                list.Add(new KeyValuePair<Guid, string>(s.SourceId, s.Name));
+                list.Add(new KeyValuePair<Guid, string>(s.SourceId, s.Name + " (" + s.Type + ")" + ": "+ s.Description));
             }
             return list;
         }

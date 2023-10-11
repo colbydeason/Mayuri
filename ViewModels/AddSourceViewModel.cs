@@ -82,19 +82,6 @@ namespace Mayuri.ViewModels
                 OnPropertyChanged(nameof(SourceOneTime));
             }
         }
-        private int _sourceDuration;
-        public int SourceDuration 
-        {
-            get
-            {
-                return _sourceDuration;
-            }
-            set
-            {
-                _sourceDuration = (int) value;
-                OnPropertyChanged(nameof(SourceDuration));
-            }
-        }
         public ICommand CreateSourceCommand { get; }
         private ISourceList _sources;
         public AddSourceViewModel()

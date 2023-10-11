@@ -24,13 +24,16 @@ namespace Mayuri.Commands
             Source newSource;
             if (_vm.SourceOneTime == true)
             {
-                newSource = new Source(_vm.SourceName, _vm.SourceDescription, _vm.SourceType, true, true, _vm.SourceDuration);
+                newSource = new Source(_vm.SourceName, _vm.SourceDescription, _vm.SourceType, true, true, 0);
             }
             else
             {
-                newSource = new Source(_vm.SourceName, _vm.SourceDescription, _vm.SourceType, false, false, _vm.SourceDuration);
+                newSource = new Source(_vm.SourceName, _vm.SourceDescription, _vm.SourceType, false, false, 0);
             }
             _sources.CreateSource(newSource);
+            _vm.SourceName = String.Empty;
+            _vm.SourceDescription = String.Empty;
+            _vm.SourceOneTime = false;
         }
         public override bool CanExecute(object? parameter)
         {
