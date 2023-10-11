@@ -9,11 +9,9 @@ Fix Int field for string for duration
 Data Context works, make changes so you can use main window at the same time, but can't open another create source window
 When the button reloads, the canExecute reloads and it can open a new one
 
-Source value in log is a source object rn, needs to be the primary key but how do I hold that in the model.
-
 Fix button programming so it doesn't look like sh*t
 
-Create an object with key as the source ID and display text as the name so it can be shown as the name and when it is passed it uses the ID
+Add new view model for the popup windows so they can take in the window in the constructor  (or maybe use an event?) so they close after creation.
 
 StartupUri="MainWindow.xaml" - > OG startup 
 

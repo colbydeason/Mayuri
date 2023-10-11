@@ -38,7 +38,7 @@ namespace Mayuri.ViewModels
                 OnPropertyChanged(nameof(LogDuration));
             }
         }
-        public List<KeyValuePair<Guid, string>> CurrentSourceList;
+        public List<KeyValuePair<Guid, string>> CurrentSourcesList => _sources.GetCurrentSourcesList().Result;
         public ICommand CreateLogCommand { get; }
         private ISourceList _sources;
         private ILogList _logs;

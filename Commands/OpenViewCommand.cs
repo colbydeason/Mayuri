@@ -14,7 +14,7 @@ namespace Mayuri.Commands
     {
         private readonly NavigationStore _navigationStore;
         private readonly Func<TViewModel> _createNewViewModel;
-        private bool _isOpen = false;
+        //private bool _isOpen = false;
         public OpenViewCommand(NavigationStore navigationStore, Func<TViewModel> newViewModel)
         {
             _navigationStore = navigationStore;
@@ -35,7 +35,8 @@ namespace Mayuri.Commands
 
         public override bool CanExecute(object? parameter)
         {
-            return !_isOpen;
+            //return !_isOpen;
+            return true;
         }
     }
 }
