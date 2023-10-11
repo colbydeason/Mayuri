@@ -21,7 +21,7 @@
             <TextBlock Text="Source" FontSize="20"/>
             <ComboBox MinWidth="100" ItemsSource="{Binding CurrentSourcesList}" DisplayMemberPath="Value" SelectedItem="{Binding LogSource, UpdateSourceTrigger=PropertyChanged}">
             </ComboBox>
-            <TextBlock Text="Duration" FontSize="20"/>
+            <TextBlock Text="Duration in Minutes" FontSize="20"/>
             <TextBox Text="{Binding LogDuration, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" MinWidth="100"/>
         </StackPanel>
         <Button Padding="20, 0" HorizontalAlignment="Center" Margin="0, 0, 0, 20" 

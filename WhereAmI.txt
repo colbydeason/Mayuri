@@ -4,8 +4,28 @@ In OpenView command pass the window to the constructor of the new viewmodel (use
 
 change db location to appdata, also use new foreign key list / reference for use in total hours
 
+use connection to create log and source at same time
 
+View
+            <StackPanel HorizontalAlignment="Left">
+                <TextBlock HorizontalAlignment="Center" Text="Total Time"/>
+                <TextBox Text="{Binding SourceDuration, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
 
+View model
+        private int _sourceDuration;
+        public int SourceDuration 
+        {
+            get
+            {
+                return _sourceDuration;
+            }
+            set
+            {
+                _sourceDuration = (int) value;
+                OnPropertyChanged(nameof(SourceDuration));
+            }
+        }
 
 StartupUri="MainWindow.xaml" - > OG startup 
 

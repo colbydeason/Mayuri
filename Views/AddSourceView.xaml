@@ -30,10 +30,6 @@
                 <TextBlock Height="auto" HorizontalAlignment="Center" Text="One Time"/>
                 <CheckBox HorizontalAlignment="Center" IsChecked="{Binding SourceOneTime, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
-            <StackPanel HorizontalAlignment="Left">
-                <TextBlock HorizontalAlignment="Center" Text="Total Time"/>
-                <TextBox Text="{Binding SourceDuration, UpdateSourceTrigger=PropertyChanged}"/>
-            </StackPanel>
         </StackPanel>
         <Button Content="Create" MaxHeight="20" MaxWidth="100" Grid.Row="1" Command="{Binding CreateSourceCommand, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>

@@ -25,6 +25,8 @@ namespace Mayuri.Commands
             Log newLog;
             newLog = new Log(vm.LogDurationInt, vm.LogSourceId);
             lg.CreateLog(newLog);
+            vm.LogDurationInt = 0;
+            vm.LogDuration = "0";
         }
         public override bool CanExecute(object? parameter)
         {
