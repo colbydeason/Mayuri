@@ -11,14 +11,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Mayuri.Migrations
 {
     [DbContext(typeof(MayuriDbContext))]
-    [Migration("20231010193739_Initial")]
+    [Migration("20231011134211_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "7.0.11");
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.12");
 
             modelBuilder.Entity("Mayuri.DTOs.LogDTO", b =>
                 {
@@ -29,8 +29,11 @@ namespace Mayuri.Migrations
                     b.Property<int>("Duration")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("SourceId")
-                        .HasColumnType("INTEGER");
+                    b.Property<DateTime>("LoggedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("SourceId")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("LogId");
 

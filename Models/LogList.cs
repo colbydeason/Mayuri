@@ -16,15 +16,5 @@ namespace Mayuri.Models
         {
             throw new NotImplementedException();
         }
-
-        public Task<IEnumerable<Source>> GetAllSources()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<Source>> GetCurrentSources()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

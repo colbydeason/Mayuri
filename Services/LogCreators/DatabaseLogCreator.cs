@@ -32,7 +32,9 @@ namespace Mayuri.Services.LogCreators
         {
             return new LogDTO()
             {
-
+                SourceId = log.SourceId,
+                LoggedAt = log.LoggedAt,
+                Duration = log.Duration,
             };
         }
     }

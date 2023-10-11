@@ -11,5 +11,6 @@ namespace Mayuri.Services.SourceProvider
     {
         Task<IEnumerable<Source>> GetAllSources();
         Task<IEnumerable<Source>> GetCurrentSources();
+        Task<List<KeyValuePair<Guid, string>>> GetCurrentSourcesList();
     }
 }

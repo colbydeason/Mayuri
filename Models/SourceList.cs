@@ -36,5 +36,10 @@ namespace Mayuri.Models
         {
             return await _sourceProvider.GetCurrentSources();
         }
+
+        public async Task<List<KeyValuePair<Guid, string>>> GetCurrentSourcesList()
+        {
+            return await _sourceProvider.GetCurrentSourcesList();
+        }
     }
 }

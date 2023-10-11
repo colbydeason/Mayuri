@@ -29,7 +29,7 @@ namespace Mayuri.Services.SourceProvider
         }
         private static Source ToSource(SourceDTO r)
         {
-            return new Source(r.Name, r.Description, r.Type, r.OneTime, r.Completed, r.TotalDuration);
+            return new Source(r.Name, r.Description, r.Type, r.OneTime, r.Completed, r.TotalDuration, r.SourceId);
         }
         public async Task<IEnumerable<Source>> GetCurrentSources()
         {
@@ -39,6 +39,15 @@ namespace Mayuri.Services.SourceProvider
 
                 return sourceDTOs.Select(r => ToSource(r));
             }
+        }
+        public async Task<List<KeyValuePair<Guid, string>>> GetCurrentSourcesList()
+        {
+            List<KeyValuePair<Guid, string>> list = new List<KeyValuePair<Guid, string>>();
+            foreach (var s in await GetCurrentSources())
+            {
+                list.Add(new KeyValuePair<Guid, string>(s.SourceId, s.Name));
+            }
+            return list;
         }
     }
 }

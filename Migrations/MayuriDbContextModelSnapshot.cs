@@ -15,7 +15,7 @@ namespace Mayuri.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "7.0.11");
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.12");
 
             modelBuilder.Entity("Mayuri.DTOs.LogDTO", b =>
                 {
@@ -26,8 +26,11 @@ namespace Mayuri.Migrations
                     b.Property<int>("Duration")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("SourceId")
-                        .HasColumnType("INTEGER");
+                    b.Property<DateTime>("LoggedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("SourceId")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("LogId");
 

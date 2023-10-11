@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Mayuri.Models
 {
-    public interface ILogList : ISourceProvider, ILogCreator
+    public interface ILogList : ILogCreator
     {
     }
 }
