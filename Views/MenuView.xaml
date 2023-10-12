@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Mayuri.Views"
+             xmlns:ScottPlot="clr-namespace:ScottPlot;assembly=ScottPlot.WPF"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="900">
     <UserControl.Background>
@@ -26,5 +27,6 @@
             <Button HorizontalAlignment="Center" VerticalAlignment="Center" Padding="30, 10" FontSize="25" Background="Transparent" Foreground="WhiteSmoke"
                 BorderThickness="0" Command="{Binding OpenAddSourceView}" >Add / Log New Source</Button>
         </StackPanel>
+        <ScottPlot:WpfPlot Padding="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20, 0" Grid.Row="1" x:Name="WeeklyLogs" Height="185" Width="368"/>
     </Grid>
 </UserControl>
