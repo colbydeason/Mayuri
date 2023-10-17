@@ -98,8 +98,6 @@ namespace Mayuri.Views
             }
 
             BarSeries barSeries = plot.AddBarSeries();
-            List<double> currentBarHours = new();
-            List<string> currentBarLabels = new();
             double lastBarTop = 0;
             logs.MoveNext();
             DateTime currentBarDate = logs.Current.LoggedAt.Date;
