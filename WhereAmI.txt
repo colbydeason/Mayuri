@@ -6,6 +6,8 @@ change db location to appdata, also use new foreign key list / reference for use
 
 use connection to create log and source at same time
 
+for some reason loggedAt is updating weird.
+
 ScottPlott for visual stuff on menu:
     stacked bar for logs
     Coxcomb chart for source types
@@ -19,6 +21,7 @@ If i feel fancy I'll figure out ggplot2 https://stackoverflow.com/questions/3475
             p.XAxis.DateTimeFormat(true);
             WeeklyLogs.Refresh();
 
+Increase size of application so the graph looks better
 
 View
             <StackPanel HorizontalAlignment="Left">

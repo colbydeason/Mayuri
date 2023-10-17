@@ -17,5 +17,11 @@ namespace Mayuri.Models
             SourceId = sourceId;
             LoggedAt = DateTime.Now;
         }
+        public Log(int duration, Guid sourceId, DateTime loggedAt)
+        {
+            Duration = duration;
+            SourceId = sourceId;
+            LoggedAt = loggedAt; 
+        }
     }
 }

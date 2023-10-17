@@ -29,7 +29,7 @@ namespace Mayuri.Services.LogProvider
         }
         private static Log ToLog(LogDTO r)
         {
-            return new Log(r.Duration, r.SourceId); 
+            return new Log(r.Duration, r.SourceId, r.LoggedAt); 
         }
     }
 }
