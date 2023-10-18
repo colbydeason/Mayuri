@@ -33,7 +33,7 @@ namespace Mayuri.Views
             Plot plt = WeeklyLogs.Plot;
             ScottPlot.Control.Configuration cf = WeeklyLogs.Configuration;
 
-            PlotLogList(lgList, plt, cf, 7); 
+            PlotLogList(lgList, plt, cf, "all"); 
 
 
             WeeklyLogs.Refresh();
@@ -60,7 +60,7 @@ namespace Mayuri.Views
         //          if not, add bar using the current arrays, then create a new array with the new
 
 
-        private void PlotLogList(ILogList l, ScottPlot.Plot plot, ScottPlot.Control.Configuration conf, int dayPeriod)
+        private void PlotLogList(ILogList l, ScottPlot.Plot plot, ScottPlot.Control.Configuration conf, string logPeriod = "all" )
         {
             Dictionary<string, Color> SourceColor = new Dictionary<string, Color>
             {
@@ -75,17 +75,18 @@ namespace Mayuri.Views
             };
             IEnumerable<Log> logEnum = l.GetAllLogs().Result;
             IEnumerator<Log> logs = logEnum.GetEnumerator();
-            DateTime nowDate = DateTime.Today;
-            DateTime oldestDate = nowDate.AddDays(dayPeriod * -1);
-            double tallestBar = 10;
+            if (logEnum == null || !logEnum.Any())
+            {
+                return;
+            }
 
-            plot.SetAxisLimitsX(oldestDate.AddDays(-1).ToOADate(), nowDate.AddDays(.5).ToOADate());
-            plot.XAxis.DateTimeFormat(true);
-            plot.YAxis2.SetSizeLimit(min: 0);
             conf.Pan = false;
             conf.Zoom = false;
             conf.ScrollWheelZoom = false;
             conf.MiddleClickDragZoom = false;
+
+            plot.XAxis.DateTimeFormat(true);
+            plot.YAxis2.SetSizeLimit(min: 0);
             plot.XAxis.Layout(padding: 0, maximumSize: 22);
             //plot.YAxis.Layout(padding: 0, maximumSize: 30);
             plot.XAxis.Label("");
@@ -94,21 +95,59 @@ namespace Mayuri.Views
             plot.Style(figureBackground: Color.FromArgb(127, 0, 0, 0),grid: Color.FromArgb(127, 0, 0, 0) ,axisLabel: Color.White, tick: Color.White) ;
             plot.Style();
 
-
-            if (logEnum == null || !logEnum.Any())
-            {
-                return;
-            }
-
+            DateTime oldestDate;
+            DateTime currentBarDate;
+            DateTime nowDate = DateTime.Today;
             BarSeries barSeries = plot.AddBarSeries();
-            double lastBarTop = 0;
-            logs.MoveNext();
-            DateTime currentBarDate = logs.Current.LoggedAt.Date;
-            while (currentBarDate < oldestDate)
+
+            if (logPeriod == "all")
             {
+                plot.AxisAuto();
+                logs.MoveNext();
+                oldestDate = logs.Current.LoggedAt;
+                currentBarDate = logs.Current.LoggedAt.Date;
+
+            } else if (logPeriod == "day")
+            {
+                oldestDate = nowDate;
+                plot.SetAxisLimitsX(oldestDate.AddDays(-.5).ToOADate(), nowDate.AddDays(.5).ToOADate());
                 logs.MoveNext();
                 currentBarDate = logs.Current.LoggedAt.Date;
+                while (currentBarDate < oldestDate)
+                {
+                    logs.MoveNext();
+                    currentBarDate = logs.Current.LoggedAt.Date;
+                }
+            } else if(logPeriod == "week")
+            {
+                oldestDate = nowDate.AddDays(-7);
+                plot.SetAxisLimitsX(oldestDate.AddDays(-.5).ToOADate(), nowDate.AddDays(.5).ToOADate());
+                logs.MoveNext();
+                currentBarDate = logs.Current.LoggedAt.Date;
+                while (currentBarDate < oldestDate)
+                {
+                    logs.MoveNext();
+                    currentBarDate = logs.Current.LoggedAt.Date;
+                }
+
+            } else if(logPeriod == "month")
+            {
+                oldestDate = nowDate.AddDays(-30);
+                plot.SetAxisLimitsX(oldestDate.AddDays(-.5).ToOADate(), nowDate.AddDays(.5).ToOADate());
+                logs.MoveNext();
+                currentBarDate = logs.Current.LoggedAt.Date;
+                while (currentBarDate < oldestDate)
+                {
+                    logs.MoveNext();
+                    currentBarDate = logs.Current.LoggedAt.Date;
+                }
             }
+            else
+            {
+                throw new Exception("Invalid string for logPeriod");
+            }
+            double lastBarTop = 0;
+            double tallestBar = 10;
             do
             {
                 Log curLog = logs.Current;
