@@ -77,11 +77,11 @@ namespace Mayuri.Views
             IEnumerator<Log> logs = logEnum.GetEnumerator();
             DateTime nowDate = DateTime.Today;
             DateTime oldestDate = nowDate.AddDays(dayPeriod * -1);
-            double tallestBar = 5;
+            double tallestBar = 10;
 
-            plot.SetAxisLimitsX(oldestDate.AddDays(-1).ToOADate(), nowDate.AddDays(1).ToOADate());
+            plot.SetAxisLimitsX(oldestDate.AddDays(-1).ToOADate(), nowDate.AddDays(.5).ToOADate());
             plot.XAxis.DateTimeFormat(true);
-            //plot.YAxis2.SetSizeLimit(min: 0);
+            plot.YAxis2.SetSizeLimit(min: 0);
             conf.Pan = false;
             conf.Zoom = false;
             conf.ScrollWheelZoom = false;
@@ -104,7 +104,7 @@ namespace Mayuri.Views
             double lastBarTop = 0;
             logs.MoveNext();
             DateTime currentBarDate = logs.Current.LoggedAt.Date;
-            while (currentBarDate <= oldestDate)
+            while (currentBarDate < oldestDate)
             {
                 logs.MoveNext();
                 currentBarDate = logs.Current.LoggedAt.Date;

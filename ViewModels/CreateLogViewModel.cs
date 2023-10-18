@@ -1,5 +1,6 @@
 ﻿using Mayuri.Commands;
 using Mayuri.Models;
+using Mayuri.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -73,16 +74,25 @@ namespace Mayuri.ViewModels
                 OnPropertyChanged(nameof(LogDurationInt));
             }
         }
+        public string CurrStopwatch => MinuteFormat(_stopwatch.ElapsedTime());
         public List<KeyValuePair<Guid, string>> CurrentSourcesList => _sources.GetCurrentSourcesList().Result;
         public ICommand CreateLogCommand { get; }
         private ISourceList _sources;
         private ILogList _logs;
+        private IImmersionTimeService _stopwatch;
         public PopupWindow? ThisWindow { get; set; }
         public CreateLogViewModel()
         {
             _sources = App.Current.Services.GetService<ISourceList>();
             _logs = App.Current.Services.GetService<ILogList>();
+            _stopwatch = App.Current.Services.GetService<IImmersionTimeService>();
             CreateLogCommand = new CreateLogCommand(this, _logs);
+        }
+
+        private string MinuteFormat(TimeSpan timeSpan)
+        {
+            string timeInMinute = timeSpan.TotalMinutes.ToString("0.00") + "m";
+            return timeInMinute;
         }
     }
 }

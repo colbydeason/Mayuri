@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Mayuri.Views"
              xmlns:ScottPlot="clr-namespace:ScottPlot;assembly=ScottPlot.WPF"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="900">
+             d:DesignHeight="600" d:DesignWidth="1100">
     <UserControl.Background>
         <ImageBrush ImageSource="/Images/MayuriReachBlur.jpg" Stretch="UniformToFill"/>
     </UserControl.Background>
@@ -15,8 +15,12 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Background="Transparent" Foreground="WhiteSmoke" FontWeight="ExtraBold"  FontSize="60" Padding="40, 20, 0, 0">Mayuri</Label>
-        <StackPanel HorizontalAlignment="Right" Margin="10">
+        <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Margin="10">
             <StackPanel.Background>
                 <SolidColorBrush Color="Black" Opacity=".3"/>
             </StackPanel.Background>
@@ -27,6 +31,9 @@
             <Button HorizontalAlignment="Center" VerticalAlignment="Center" Padding="30, 10" FontSize="25" Background="Transparent" Foreground="WhiteSmoke"
                 BorderThickness="0" Command="{Binding OpenAddSourceView}" >Add / Log New Source</Button>
         </StackPanel>
-        <ScottPlot:WpfPlot Padding="20" MinHeight="217" MinWidth="430" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20, 20" Grid.Row="1" x:Name="WeeklyLogs" />
+        <ScottPlot:WpfPlot Grid.Column="0" MinHeight="217" MinWidth="430" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20, 20" Grid.Row="1" x:Name="WeeklyLogs" />
+        <Grid Grid.Row="1" Grid.Column="1">
+            
+        </Grid>
     </Grid>
 </UserControl>

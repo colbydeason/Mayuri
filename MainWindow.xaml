@@ -12,7 +12,7 @@
         ResizeMode="CanResizeWithGrip"
         WindowStyle="SingleBorderWindow"
         WindowStartupLocation="CenterScreen"
-        Height="500" Width="900">
+        Height="600" Width="1100">
     <Grid>
         <ContentControl Content="{Binding CurrentViewModel}">
             <ContentControl.Resources>

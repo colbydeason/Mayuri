@@ -16,15 +16,25 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <TextBlock.Foreground>WhiteSmoke</TextBlock.Foreground>
-        <TextBlock.FontSize>16</TextBlock.FontSize>
+        <TextBlock.FontSize>20</TextBlock.FontSize>
         <StackPanel Margin="10">
-            <TextBlock Text="Source" FontSize="20"/>
+            <TextBlock Text="Source"/>
             <ComboBox MinWidth="100" ItemsSource="{Binding CurrentSourcesList}" DisplayMemberPath="Value" SelectedItem="{Binding LogSource, UpdateSourceTrigger=PropertyChanged}">
             </ComboBox>
-            <TextBlock Text="Duration in Minutes" FontSize="20"/>
+            <TextBlock Text="Duration in Minutes"/>
             <TextBox Text="{Binding LogDuration, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" MinWidth="100"/>
         </StackPanel>
-        <Button Padding="20, 0" HorizontalAlignment="Center" Margin="0, 0, 0, 20" 
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" HorizontalAlignment="Center">
+                <TextBlock Text="Current Stopwatch:"/>
+                <TextBlock HorizontalAlignment="Center" FontSize="60" Text="{Binding CurrStopwatch}"/>
+            </StackPanel>
+            <Button Padding="20, 0" HorizontalAlignment="Center" Margin="0, 0, 0, 20" 
                 VerticalAlignment="Bottom" Content="Create" Grid.Row="1" Command="{Binding CreateLogCommand, UpdateSourceTrigger=PropertyChanged}"/>
+        </Grid>
     </Grid>
 </UserControl>
