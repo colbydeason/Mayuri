@@ -22,14 +22,16 @@ namespace Mayuri.Services.LogProvider
         {
             using (MayuriDbContext context = _dbContextFactory.CreateDbContext())
             {
-                IEnumerable<LogDTO> logDTOs = await context.Logs.ToListAsync();
+                IEnumerable<LogDTO> logDTOs = await context.Logs.Include(r => r.Source).ToListAsync();
 
                 return logDTOs.Select(r => ToLog(r)); 
             }
         }
         private static Log ToLog(LogDTO r)
         {
-            return new Log(r.Duration, r.SourceId, r.LoggedAt); 
+            Source src = new Source(r.Source.Name, r.Source.Description, r.Source.Type,
+                r.Source.OneTime, r.Source.Completed, r.Source.TotalDuration);
+            return new Log(r.Duration, r.SourceId, r.LoggedAt, src);
         }
     }
 }

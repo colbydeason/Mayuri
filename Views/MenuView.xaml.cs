@@ -26,18 +26,6 @@ namespace Mayuri.Views
     /// </summary>
     public partial class MenuView : UserControl
     {
-        public List<KeyValuePair<string, System.Drawing.Color>> colorPallate = new()
-        {
-            new KeyValuePair<string, System.Drawing.Color>("Book", Color.Red),
-            new KeyValuePair<string, System.Drawing.Color>("Anime", Color.Blue),
-            new KeyValuePair<string, System.Drawing.Color>("Manga", Color.Orange),
-            new KeyValuePair<string, System.Drawing.Color>("Visual Novel", Color.Yellow),
-            new KeyValuePair<string, System.Drawing.Color>("Video Game", Color.Green),
-            new KeyValuePair<string, System.Drawing.Color>("Reading", Color.Purple),
-            new KeyValuePair<string, System.Drawing.Color>("Listening", Color.Brown),
-            new KeyValuePair<string, System.Drawing.Color>("Other", Color.Gray),
-
-        };
         public MenuView()
         {
             InitializeComponent();
@@ -74,6 +62,17 @@ namespace Mayuri.Views
 
         private void PlotLogList(ILogList l, ScottPlot.Plot plot, ScottPlot.Control.Configuration conf, int dayPeriod)
         {
+            Dictionary<string, Color> SourceColor = new Dictionary<string, Color>
+            {
+                { "Book", Color.FromArgb(255, 105, 97) },
+                { "Anime", Color.FromArgb(255, 180, 128)},
+                { "Manga", Color.FromArgb(248, 243, 141)},
+                { "Visual Novel", Color.FromArgb(66, 214, 164) },
+                { "Video Game", Color.FromArgb(8, 202, 209)},
+                { "Reading", Color.FromArgb(89, 173, 246) },
+                { "Listening", Color.FromArgb(157, 148, 255)},
+                { "Other", Color.FromArgb(199, 128, 232)},
+            };
             IEnumerable<Log> logEnum = l.GetAllLogs().Result;
             IEnumerator<Log> logs = logEnum.GetEnumerator();
             DateTime nowDate = DateTime.Today;
@@ -82,15 +81,19 @@ namespace Mayuri.Views
 
             plot.SetAxisLimitsX(oldestDate.AddDays(-1).ToOADate(), nowDate.AddDays(1).ToOADate());
             plot.XAxis.DateTimeFormat(true);
-            plot.YAxis2.SetSizeLimit(min: 0);
+            //plot.YAxis2.SetSizeLimit(min: 0);
             conf.Pan = false;
             conf.Zoom = false;
             conf.ScrollWheelZoom = false;
             conf.MiddleClickDragZoom = false;
-            plot.XAxis.Layout(padding: 0, maximumSize: 20);
-            plot.YAxis.Layout(padding: 0, maximumSize: 20);
+            plot.XAxis.Layout(padding: 0, maximumSize: 22);
+            //plot.YAxis.Layout(padding: 0, maximumSize: 30);
             plot.XAxis.Label("");
-            plot.YAxis.Label("");
+            plot.YAxis.Label("Minutes");
+            //plot.Style(Color.Transparent);
+            plot.Style(figureBackground: Color.FromArgb(127, 0, 0, 0),grid: Color.FromArgb(127, 0, 0, 0) ,axisLabel: Color.White, tick: Color.White) ;
+            plot.Style();
+
 
             if (logEnum == null || !logEnum.Any())
             {
@@ -114,7 +117,7 @@ namespace Mayuri.Views
                     currentBarDate.Day != curLog.LoggedAt.Day)
                 {
                     lastBarTop = 0;
-                    currentBarDate = curLog.LoggedAt;
+                    currentBarDate = curLog.LoggedAt.Date;
                 } 
                 double barTop = lastBarTop + curLog.Duration;
                 double barBottom = lastBarTop;
@@ -128,14 +131,15 @@ namespace Mayuri.Views
                 {
                     Value = barTop,
                     ValueBase = barBottom,
-                    // FillColor = (insert source type color here)
-                    FillColor = Color.Blue,
+                    FillColor = SourceColor[$"{curLog.LogSource.Type}"],
                     LineColor = Color.Black,
+                    LineWidth = 1,
                     Position = currentBarDate.ToOADate(),
-                    
+
+
                 });
             } while(logs.MoveNext());
-            plot.SetAxisLimitsY(0, tallestBar);
+            plot.SetAxisLimitsY(0, tallestBar + 10);
         }
     }
 }
