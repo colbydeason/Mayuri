@@ -27,7 +27,7 @@ namespace Mayuri.Services.SourceProvider
                 return sourceDTOs.Select(r => ToSource(r)); 
             }
         }
-        private static Source ToSource(SourceDTO r)
+        public static Source ToSource(SourceDTO r)
         {
             return new Source(r.Name, r.Description, r.Type, r.OneTime, r.Completed, r.TotalDuration, r.SourceId);
         }

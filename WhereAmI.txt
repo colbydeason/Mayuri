@@ -1,10 +1,27 @@
 Fix button programming so it doesn't look like sh*t
 
-In OpenView command pass the window to the constructor of the new viewmodel (use new viewmodelbase for popup window)
+Stopwatch integration
 
 change db location to appdata, also use new foreign key list / reference for use in total hours
 
 use connection to create log and source at same time
+
+for some reason loggedAt is updating weird.
+
+ScottPlott for visual stuff on menu:
+    stacked bar for logs
+    Coxcomb chart for source types
+    Radar chart contrasting number of sources of each type to ammount immersed in each type
+If i feel fancy I'll figure out ggplot2 https://stackoverflow.com/questions/34755746/fill-a-heat-map-24h-by-7days-in-ggplot2
+            InitializeComponent();
+            ScottPlot.Plot p = WeeklyLogs.Plot;
+            p.SetAxisLimits(yMin: 0);
+            p.Layout(padding: 0);
+            p.YAxis.SetBoundary(0, 24);
+            p.XAxis.DateTimeFormat(true);
+            WeeklyLogs.Refresh();
+
+Increase size of application so the graph looks better
 
 View
             <StackPanel HorizontalAlignment="Left">
