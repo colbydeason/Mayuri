@@ -76,10 +76,10 @@ namespace Mayuri.Views
             IEnumerator<Log> logs = logEnum.GetEnumerator();
             if (logEnum == null || !logEnum.Any())
             {
-                totalTimeDay = "Go Immerse!!!!";
-                totalTimeGivenPeriod = "";
-                timeAverageGivenPeriod = "";
-                totalTime = "";
+                totalTimeDay = "Create a Source";
+                totalTimeGivenPeriod = "Use Stopwatch to Track Time";
+                timeAverageGivenPeriod = "Log Immersion Hours";
+                totalTime = "Profit";
                 return;
             }
 
@@ -102,10 +102,10 @@ namespace Mayuri.Views
             DateTime currentBarDate;
             DateTime nowDate = DateTime.Today;
             BarSeries barSeries = plot.AddBarSeries();
-            double ttd = 0;
-            double ttgp = 0;
-            double tagp = 0;
-            double tt = 0;
+            int ttd = 0;
+            int ttgp = 0;
+            int tagp = 0;
+            int tt = 0;
 
             if (logPeriod == "all")
             {
@@ -200,11 +200,33 @@ namespace Mayuri.Views
             } while(logs.MoveNext());
             plot.SetAxisLimitsY(0, tallestBar + 10);
 
-            totalTime = "Total: " + tt.ToString();
-            totalTimeGivenPeriod = ($"Total time for {logPeriod}: ") + ttgp.ToString();
-            totalTimeDay = "Today: " + ttd.ToString();
+            totalTime = "Total: \n" + ToTimeFormat(tt);
+            totalTimeGivenPeriod = ($"Total for {logPeriod}: \n") + ToTimeFormat(ttgp);
+            totalTimeDay = "Today: \n" + ToTimeFormat(ttd);
             tagp = ttgp / tagp;
-            timeAverageGivenPeriod = $"Average Time for {logPeriod}: " + tagp.ToString("0.00");
+            timeAverageGivenPeriod = $"Daily average for {logPeriod}: \n" + ToTimeFormat(tagp);
+        }
+
+        private static string ToTimeFormat(int time)
+        {
+            int days;
+            int hours;
+            int minutes;
+            days = Math.DivRem(time, 1440, out hours);
+            hours = Math.DivRem(hours, 60, out minutes);
+            if (days == 0 && hours == 0 && minutes == 0)
+            {
+                return "None, Go Immerse!!!";
+            } else if (days == 0 && hours == 0)
+            {
+                return $"{minutes}m";
+            } else if (days == 0)
+            {
+                return $"{hours}h, {minutes}m";
+            } else
+            {
+                return $"{days}d, {hours}h, {minutes}m";
+            }
         }
     }
 }
