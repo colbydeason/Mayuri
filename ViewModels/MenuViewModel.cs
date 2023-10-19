@@ -25,7 +25,7 @@ namespace Mayuri.ViewModels
         {
             NavigateStopwatchCommand = new NavigateCommand<ImmersionTimeViewModel>(navigationStore, () => new ImmersionTimeViewModel(navigationStore));
             OpenAddSourceView = new OpenViewCommand<AddSourceViewModel>(navigationStore, () => new AddSourceViewModel());
-            OpenCreateLogView = new OpenViewCommand<CreateLogViewModel>(navigationStore, () => new CreateLogViewModel());
+            OpenCreateLogView = new OpenViewCommand<CreateLogViewModel>(navigationStore, () => new CreateLogViewModel(this));
         }
     }
 }
