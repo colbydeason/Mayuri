@@ -1,14 +1,19 @@
 # Mayuri
-This application will eventually contain a way to log and track immersion for studying another language. It currently only features the Home Page, and the Stopwatch. The Stopwatch will also eventually be integrated into the logging system, so that you can export it from the Stopwatch to a new log.
+The goal of this application is to help those learning a language stay consistent with native content immersion. To do this, you can use the stopwatch to track how long you spend immersing in a specific source (a book, a show, etc.), and then create a source / log with that source. This will keep track of how long you are immersing each day, as well as provide informative stats to keep you consistent.
+
+In the future, there will be even more ways to view and monitor your logged immersion hours and stats. For now, you can view the current time spent today, total for the week, daily average for the week, and total time.
+
 ## Menu Window
-![image](https://github.com/colbydeason/Mayuri/assets/72679027/473a4a3c-14ea-42bb-9093-01b0b8b9403c)
+![image](https://github.com/colbydeason/Mayuri/assets/72679027/64ead6bd-6ffb-4ad7-80b9-c3ebb43cc580)
 
 ## Stopwatch Window
 Note: The stopwatch will continue running in the background, regardless of minimization of the application, or navigation away from the Stopwatch  (to the Home Page, or while opening the Add / Log New Source or Create Log windows).
-![image](https://github.com/colbydeason/Mayuri/assets/72679027/e30d588d-737c-495c-80f6-405a9312007d)
+![image](https://github.com/colbydeason/Mayuri/assets/72679027/7bb71d85-9a20-40b8-bcfe-194cbc3b1b11)
 
-Create Log and Add / Log New Source buttons show the following windows, but currently have no backend functionality, just a preview.
+## Create Source
+![image](https://github.com/colbydeason/Mayuri/assets/72679027/903214aa-dcfc-463e-af17-2d7b4ce28fd1)
 
-![image](https://github.com/colbydeason/Mayuri/assets/72679027/45a45b7c-3054-480a-ae32-53107417af69)
-![image](https://github.com/colbydeason/Mayuri/assets/72679027/1a233f03-af49-49ba-afdc-4fa5b849fa14)
+## Create Log
+![image](https://github.com/colbydeason/Mayuri/assets/72679027/10255480-6f5b-4942-8088-35a0ab375677)
+
 
