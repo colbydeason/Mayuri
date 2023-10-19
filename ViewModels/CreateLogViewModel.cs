@@ -78,12 +78,14 @@ namespace Mayuri.ViewModels
         private ILogList _logs;
         private IImmersionTimeService _stopwatch;
         public PopupWindow? ThisWindow { get; set; }
-        public CreateLogViewModel()
+        private ViewModelBase _parentViewModel;
+        public CreateLogViewModel(ViewModelBase parentViewModel)
         {
             _sources = App.Current.Services.GetService<ISourceList>();
             _logs = App.Current.Services.GetService<ILogList>();
             _stopwatch = App.Current.Services.GetService<IImmersionTimeService>();
             CreateLogCommand = new CreateLogCommand(this, _logs);
+            _parentViewModel = parentViewModel;
         }
 
         private string MinuteFormat(TimeSpan timeSpan)

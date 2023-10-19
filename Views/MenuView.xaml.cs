@@ -1,3 +1,4 @@
+
 ﻿using Mayuri.Models;
 using Microsoft.Extensions.DependencyInjection;
 using ScottPlot;
@@ -61,17 +62,6 @@ namespace Mayuri.Views
                 { "Listening", Color.FromArgb(157, 148, 255)},
                 { "Other", Color.FromArgb(199, 128, 232)},
             };
-            IEnumerable<Log> logEnum = l.GetAllLogs().Result;
-            IEnumerator<Log> logs = logEnum.GetEnumerator();
-            if (logEnum == null || !logEnum.Any())
-            {
-                totalTimeDay = "Create a Source";
-                totalTimeGivenPeriod = "Use Stopwatch to Track Time";
-                timeAverageGivenPeriod = "Log Immersion Hours";
-                totalTime = "Profit";
-                return;
-            }
-
             conf.Pan = false;
             conf.Zoom = false;
             conf.ScrollWheelZoom = false;
@@ -82,16 +72,32 @@ namespace Mayuri.Views
             plot.XAxis.Layout(padding: 0, maximumSize: 22);
             plot.XAxis.Label("");
             plot.YAxis.Label("Minutes");
+
             plot.Style(figureBackground: Color.FromArgb(127, 0, 0, 0), grid: Color.FromArgb(127, 0, 0, 0), axisLabel: Color.White, tick: Color.White);
             plot.Style();
 
+            IEnumerable<Log> logEnum = l.GetAllLogs().Result;
+            IEnumerator<Log> logs = logEnum.GetEnumerator();
             DateTime oldestDate;
             DateTime currentBarDate;
             DateTime nowDate = DateTime.Today;
             BarSeries barSeries = plot.AddBarSeries();
+
+            if (logEnum == null || !logEnum.Any())
+            {
+                totalTimeDay = "Create a Source";
+                totalTimeGivenPeriod = "Use Stopwatch to Track Time";
+                timeAverageGivenPeriod = "Log Immersion Hours";
+                totalTime = "Profit";
+                oldestDate = nowDate.AddDays(-6);
+                plot.SetAxisLimitsX(oldestDate.AddDays(-.5).ToOADate(), nowDate.AddDays(.5).ToOADate());
+                plot.SetAxisLimitsY(0, 10);
+                return;
+            }
+
             int ttd = 0;
             int ttgp = 0;
-            int tagp = 0;
+            int tagp;
             int tt = 0;
 
             if (logPeriod == "all")
