@@ -2,10 +2,6 @@
 using Mayuri.DBContexts;
 using Mayuri.DTOs;
 using Mayuri.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Mayuri.Services.LogCreators
@@ -15,7 +11,7 @@ namespace Mayuri.Services.LogCreators
         private readonly MayuriDbContextFactory _dbContextFactory;
         public DatabaseLogCreator(MayuriDbContextFactory dbContextFactory)
         {
-            _dbContextFactory = dbContextFactory; 
+            _dbContextFactory = dbContextFactory;
         }
         public async Task CreateLog(Log log)
         {

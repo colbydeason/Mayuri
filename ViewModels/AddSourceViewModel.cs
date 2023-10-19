@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Mayuri.Commands;
+﻿using Mayuri.Commands;
 using Mayuri.Models;
 using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Generic;
+using System.Windows.Input;
 
 namespace Mayuri.ViewModels
 {
@@ -57,7 +53,7 @@ namespace Mayuri.ViewModels
         }
 
         private string _sourceType;
-        public string SourceType 
+        public string SourceType
         {
             get
             {
@@ -70,7 +66,7 @@ namespace Mayuri.ViewModels
             }
         }
         private bool _sourceOneTime;
-        public bool SourceOneTime 
+        public bool SourceOneTime
         {
             get
             {

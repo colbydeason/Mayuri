@@ -3,12 +3,6 @@ using Mayuri.Services;
 using Mayuri.Stores;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 
 namespace Mayuri.ViewModels
@@ -34,7 +28,7 @@ namespace Mayuri.ViewModels
                 OnElapsedTimeChanged(_immersionTime.ElapsedTime());
             }
         }
-        
+
         public ImmersionTimeViewModel(NavigationStore navigationStore)
         {
             _immersionTime = App.Current.Services.GetService<IImmersionTimeService>();

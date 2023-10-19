@@ -1,20 +1,15 @@
-﻿using Mayuri.Services;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-using Mayuri.ViewModels;
-using Mayuri.Stores;
-using Microsoft.Extensions.DependencyInjection;
-using Mayuri.DbContexts;
-using Microsoft.EntityFrameworkCore;
-using Mayuri.Services.SourceProvider;
-using Mayuri.Services.SourceCreators;
+﻿using Mayuri.DbContexts;
 using Mayuri.DBContexts;
 using Mayuri.Models;
+using Mayuri.Services;
+using Mayuri.Services.SourceCreators;
+using Mayuri.Services.SourceProvider;
+using Mayuri.Stores;
+using Mayuri.ViewModels;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Windows;
 
 namespace Mayuri
 {

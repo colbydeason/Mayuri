@@ -1,11 +1,7 @@
 ﻿using Mayuri.Models;
 using Mayuri.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mayuri.Commands
 {
@@ -30,7 +26,7 @@ namespace Mayuri.Commands
         }
         public override bool CanExecute(object? parameter)
         {
-            return (vm.LogDurationInt != 0) && 
+            return (vm.LogDurationInt != 0) &&
                 (vm.LogSourceId != Guid.Empty) &&
                 base.CanExecute(parameter);
         }

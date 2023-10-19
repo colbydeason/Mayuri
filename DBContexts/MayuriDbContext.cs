@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Mayuri.DTOs;
-using Mayuri.Models;
+﻿using Mayuri.DTOs;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace Mayuri.DbContexts
 {
@@ -13,7 +8,7 @@ namespace Mayuri.DbContexts
     {
         public MayuriDbContext(DbContextOptions options) : base(options)
         {
-            
+
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -30,6 +25,6 @@ namespace Mayuri.DbContexts
 
         public DbSet<LogDTO> Logs { get; set; }
         public DbSet<SourceDTO> Sources { get; set; }
-        
+
     }
 }

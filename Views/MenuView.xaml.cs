@@ -4,20 +4,9 @@ using ScottPlot;
 using ScottPlot.Plottable;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Mayuri.Views
 {
@@ -31,6 +20,8 @@ namespace Mayuri.Views
             InitializeComponent();
             ILogList lgList = App.Current.Services.GetService<ILogList>();
             Plot plt = WeeklyLogs.Plot;
+            // For Legend Implimentation if it works out and doesn't look terrible
+            //ScottPlot.Renderable.Legend legend = plt.Legend();
             ScottPlot.Control.Configuration cf = WeeklyLogs.Configuration;
             string tTD;
             string tTGP;
@@ -58,7 +49,7 @@ namespace Mayuri.Views
         // Info format for stats:
         //          Hours for: Source, SourceType, Per Day,
 
-        private static void PlotLogList(ILogList l, ScottPlot.Plot plot, ScottPlot.Control.Configuration conf, 
+        private static void PlotLogList(ILogList l, ScottPlot.Plot plot, ScottPlot.Control.Configuration conf,
             out string totalTimeDay, out string totalTimeGivenPeriod, out string timeAverageGivenPeriod, out string totalTime, string logPeriod = "all")
         {
             Dictionary<string, Color> SourceColor = new Dictionary<string, Color>
@@ -95,7 +86,7 @@ namespace Mayuri.Views
             plot.XAxis.Label("");
             plot.YAxis.Label("Minutes");
             //plot.Style(Color.Transparent);
-            plot.Style(figureBackground: Color.FromArgb(127, 0, 0, 0),grid: Color.FromArgb(127, 0, 0, 0) ,axisLabel: Color.White, tick: Color.White) ;
+            plot.Style(figureBackground: Color.FromArgb(127, 0, 0, 0), grid: Color.FromArgb(127, 0, 0, 0), axisLabel: Color.White, tick: Color.White);
             plot.Style();
 
             DateTime oldestDate;
@@ -114,7 +105,8 @@ namespace Mayuri.Views
                 tagp = (nowDate - logs.Current.LoggedAt.Date).Days;
                 currentBarDate = logs.Current.LoggedAt.Date;
 
-            } else if (logPeriod == "day")
+            }
+            else if (logPeriod == "day")
             {
                 tagp = 1;
                 plot.SetAxisLimitsX(nowDate.AddDays(-.5).ToOADate(), nowDate.AddDays(.5).ToOADate());
@@ -126,7 +118,8 @@ namespace Mayuri.Views
                     tt += logs.Current.Duration;
                     currentBarDate = logs.Current.LoggedAt.Date;
                 }
-            } else if(logPeriod == "week")
+            }
+            else if (logPeriod == "week")
             {
                 tagp = 7;
                 oldestDate = nowDate.AddDays(-6);
@@ -140,7 +133,8 @@ namespace Mayuri.Views
                     currentBarDate = logs.Current.LoggedAt.Date;
                 }
 
-            } else if(logPeriod == "month")
+            }
+            else if (logPeriod == "month")
             {
                 tagp = 30;
                 oldestDate = nowDate.AddDays(-29);
@@ -169,7 +163,7 @@ namespace Mayuri.Views
                 {
                     lastBarTop = 0;
                     currentBarDate = curLog.LoggedAt.Date;
-                } 
+                }
                 double barTop = lastBarTop + curLog.Duration;
                 double barBottom = lastBarTop;
                 lastBarTop += curLog.Duration;
@@ -194,10 +188,8 @@ namespace Mayuri.Views
                     LineColor = Color.Black,
                     LineWidth = 1,
                     Position = currentBarDate.ToOADate(),
-
-
                 });
-            } while(logs.MoveNext());
+            } while (logs.MoveNext());
             plot.SetAxisLimitsY(0, tallestBar + 10);
 
             totalTime = "Total: \n" + ToTimeFormat(tt);
@@ -217,13 +209,16 @@ namespace Mayuri.Views
             if (days == 0 && hours == 0 && minutes == 0)
             {
                 return "None, Go Immerse!!!";
-            } else if (days == 0 && hours == 0)
+            }
+            else if (days == 0 && hours == 0)
             {
                 return $"{minutes}m";
-            } else if (days == 0)
+            }
+            else if (days == 0)
             {
                 return $"{hours}h, {minutes}m";
-            } else
+            }
+            else
             {
                 return $"{days}d, {hours}h, {minutes}m";
             }
