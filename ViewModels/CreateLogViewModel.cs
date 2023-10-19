@@ -4,9 +4,6 @@ using Mayuri.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Mayuri.ViewModels
@@ -41,7 +38,7 @@ namespace Mayuri.ViewModels
             }
         }
         private string _logDuration;
-        public string LogDuration 
+        public string LogDuration
         {
             get
             {

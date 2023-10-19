@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Mayuri.Services.SourceProvider
@@ -16,7 +15,7 @@ namespace Mayuri.Services.SourceProvider
         private readonly MayuriDbContextFactory _dbContextFactory;
         public DatabaseSourceProvider(MayuriDbContextFactory dbContextFactory)
         {
-            _dbContextFactory = dbContextFactory; 
+            _dbContextFactory = dbContextFactory;
         }
         public async Task<IEnumerable<Source>> GetAllSources()
         {
@@ -24,7 +23,7 @@ namespace Mayuri.Services.SourceProvider
             {
                 IEnumerable<SourceDTO> sourceDTOs = await context.Sources.ToListAsync();
 
-                return sourceDTOs.Select(r => ToSource(r)); 
+                return sourceDTOs.Select(r => ToSource(r));
             }
         }
         public static Source ToSource(SourceDTO r)
@@ -45,7 +44,7 @@ namespace Mayuri.Services.SourceProvider
             List<KeyValuePair<Guid, string>> list = new List<KeyValuePair<Guid, string>>();
             foreach (var s in await GetCurrentSources())
             {
-                list.Add(new KeyValuePair<Guid, string>(s.SourceId, s.Name + " (" + s.Type + ")" + ": "+ s.Description));
+                list.Add(new KeyValuePair<Guid, string>(s.SourceId, s.Name + " (" + s.Type + ")" + ": " + s.Description));
             }
             return list;
         }

@@ -1,16 +1,11 @@
-﻿using Mayuri.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 
 namespace Mayuri.Models
 {
     public class Log
     {
         public int Duration { get; }
-        public Guid SourceId {  get; } 
+        public Guid SourceId { get; }
         public DateTime LoggedAt { get; }
         public Source LogSource { get; }
         public Log(int duration, Guid sourceId)
