@@ -20,8 +20,6 @@ namespace Mayuri.Views
             InitializeComponent();
             ILogList lgList = App.Current.Services.GetService<ILogList>();
             Plot plt = WeeklyLogs.Plot;
-            // For Legend Implimentation if it works out and doesn't look terrible
-            //ScottPlot.Renderable.Legend legend = plt.Legend();
             ScottPlot.Control.Configuration cf = WeeklyLogs.Configuration;
             string tTD;
             string tTGP;
@@ -82,10 +80,8 @@ namespace Mayuri.Views
             plot.XAxis.DateTimeFormat(true);
             plot.YAxis2.SetSizeLimit(min: 0);
             plot.XAxis.Layout(padding: 0, maximumSize: 22);
-            //plot.YAxis.Layout(padding: 0, maximumSize: 30);
             plot.XAxis.Label("");
             plot.YAxis.Label("Minutes");
-            //plot.Style(Color.Transparent);
             plot.Style(figureBackground: Color.FromArgb(127, 0, 0, 0), grid: Color.FromArgb(127, 0, 0, 0), axisLabel: Color.White, tick: Color.White);
             plot.Style();
 
@@ -188,6 +184,7 @@ namespace Mayuri.Views
                     LineColor = Color.Black,
                     LineWidth = 1,
                     Position = currentBarDate.ToOADate(),
+                    //Label = curLog.LogSource.Name,
                 });
             } while (logs.MoveNext());
             plot.SetAxisLimitsY(0, tallestBar + 10);
