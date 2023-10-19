@@ -17,6 +17,10 @@ namespace Mayuri.ViewModels
         public ICommand NavigateStopwatchCommand { get; }
         public ICommand OpenAddSourceView { get; }
         public ICommand OpenCreateLogView { get; }
+        public string TotalTime {  get; set; }
+        public string TotalTimeDay {  get; set; }
+        public string TotalTimeGivenPeriod {  get; set; }
+        public string TimeAverageGivenPeriod { get; set; }
         public MenuViewModel(NavigationStore navigationStore)
         {
             NavigateStopwatchCommand = new NavigateCommand<ImmersionTimeViewModel>(navigationStore, () => new ImmersionTimeViewModel(navigationStore));

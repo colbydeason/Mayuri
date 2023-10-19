@@ -32,24 +32,20 @@ namespace Mayuri.Views
             ILogList lgList = App.Current.Services.GetService<ILogList>();
             Plot plt = WeeklyLogs.Plot;
             ScottPlot.Control.Configuration cf = WeeklyLogs.Configuration;
-
-            PlotLogList(lgList, plt, cf, "all"); 
-
+            string tTD;
+            string tTGP;
+            string tAGP;
+            string tT;
+            PlotLogList(lgList, plt, cf, out tTD, out tTGP, out tAGP, out tT, "week");
+            TotalTimeDay.Text = tTD;
+            TotalTimeGivenPeriod.Text = tTGP;
+            TimeAverageGivenPeriod.Text = tAGP;
+            TotalTime.Text = tT;
 
             WeeklyLogs.Refresh();
         }
 
-        // Input: ILogList l, int dayPeriod
-        // Output: two arrays containing the x and y axis for the given day period to be 
-        //         set on a bar graph
-        // Assumption: The logs are in order by datetime from most to least recent
-        //
-        // Process: For every log, check to see if the date is the same as the last one in the date list
-        //          If it is, add the time to the last value in the other list, if not, add it to the end of the list along with the new datetime.
-        // 
-        // OR
-        //
-        // Input: ILogList l, Plot plot, Configuration conf, int dayPeriod
+        // Input: ILogList l, Plot plot, Configuration conf, string logPeriod (all, day, week, month)
         // Output: void
         //         Adds bars to plot
         // Assumption: In order datetime from most to least
@@ -58,9 +54,12 @@ namespace Mayuri.Views
         //          for every next value:
         //          if the date is the same as the one in the list, put the values in and go next
         //          if not, add bar using the current arrays, then create a new array with the new
+        //
+        // Info format for stats:
+        //          Hours for: Source, SourceType, Per Day,
 
-
-        private void PlotLogList(ILogList l, ScottPlot.Plot plot, ScottPlot.Control.Configuration conf, string logPeriod = "all" )
+        private static void PlotLogList(ILogList l, ScottPlot.Plot plot, ScottPlot.Control.Configuration conf, 
+            out string totalTimeDay, out string totalTimeGivenPeriod, out string timeAverageGivenPeriod, out string totalTime, string logPeriod = "all")
         {
             Dictionary<string, Color> SourceColor = new Dictionary<string, Color>
             {
@@ -77,6 +76,10 @@ namespace Mayuri.Views
             IEnumerator<Log> logs = logEnum.GetEnumerator();
             if (logEnum == null || !logEnum.Any())
             {
+                totalTimeDay = "Go Immerse!!!!";
+                totalTimeGivenPeriod = "";
+                timeAverageGivenPeriod = "";
+                totalTime = "";
                 return;
             }
 
@@ -99,46 +102,55 @@ namespace Mayuri.Views
             DateTime currentBarDate;
             DateTime nowDate = DateTime.Today;
             BarSeries barSeries = plot.AddBarSeries();
+            double ttd = 0;
+            double ttgp = 0;
+            double tagp = 0;
+            double tt = 0;
 
             if (logPeriod == "all")
             {
                 plot.AxisAuto();
                 logs.MoveNext();
-                oldestDate = logs.Current.LoggedAt;
+                tagp = (nowDate - logs.Current.LoggedAt.Date).Days;
                 currentBarDate = logs.Current.LoggedAt.Date;
 
             } else if (logPeriod == "day")
             {
-                oldestDate = nowDate;
-                plot.SetAxisLimitsX(oldestDate.AddDays(-.5).ToOADate(), nowDate.AddDays(.5).ToOADate());
+                tagp = 1;
+                plot.SetAxisLimitsX(nowDate.AddDays(-.5).ToOADate(), nowDate.AddDays(.5).ToOADate());
                 logs.MoveNext();
                 currentBarDate = logs.Current.LoggedAt.Date;
-                while (currentBarDate < oldestDate)
+                while (currentBarDate < nowDate)
                 {
                     logs.MoveNext();
+                    tt += logs.Current.Duration;
                     currentBarDate = logs.Current.LoggedAt.Date;
                 }
             } else if(logPeriod == "week")
             {
-                oldestDate = nowDate.AddDays(-7);
+                tagp = 7;
+                oldestDate = nowDate.AddDays(-6);
                 plot.SetAxisLimitsX(oldestDate.AddDays(-.5).ToOADate(), nowDate.AddDays(.5).ToOADate());
                 logs.MoveNext();
                 currentBarDate = logs.Current.LoggedAt.Date;
                 while (currentBarDate < oldestDate)
                 {
                     logs.MoveNext();
+                    tt += logs.Current.Duration;
                     currentBarDate = logs.Current.LoggedAt.Date;
                 }
 
             } else if(logPeriod == "month")
             {
-                oldestDate = nowDate.AddDays(-30);
+                tagp = 30;
+                oldestDate = nowDate.AddDays(-29);
                 plot.SetAxisLimitsX(oldestDate.AddDays(-.5).ToOADate(), nowDate.AddDays(.5).ToOADate());
                 logs.MoveNext();
                 currentBarDate = logs.Current.LoggedAt.Date;
                 while (currentBarDate < oldestDate)
                 {
                     logs.MoveNext();
+                    tt += logs.Current.Duration;
                     currentBarDate = logs.Current.LoggedAt.Date;
                 }
             }
@@ -161,6 +173,14 @@ namespace Mayuri.Views
                 double barTop = lastBarTop + curLog.Duration;
                 double barBottom = lastBarTop;
                 lastBarTop += curLog.Duration;
+
+                tt += curLog.Duration;
+                ttgp += curLog.Duration;
+                if (curLog.LoggedAt.Date == nowDate)
+                {
+                    ttd += curLog.Duration;
+                }
+
                 if (barTop > tallestBar)
                 {
                     tallestBar = barTop;
@@ -179,6 +199,12 @@ namespace Mayuri.Views
                 });
             } while(logs.MoveNext());
             plot.SetAxisLimitsY(0, tallestBar + 10);
+
+            totalTime = "Total: " + tt.ToString();
+            totalTimeGivenPeriod = ($"Total time for {logPeriod}: ") + ttgp.ToString();
+            totalTimeDay = "Today: " + ttd.ToString();
+            tagp = ttgp / tagp;
+            timeAverageGivenPeriod = $"Average Time for {logPeriod}: " + tagp.ToString("0.00");
         }
     }
 }

@@ -32,8 +32,22 @@
                 BorderThickness="0" Command="{Binding OpenAddSourceView}" >Add / Log New Source</Button>
         </StackPanel>
         <ScottPlot:WpfPlot Grid.Column="0" MinHeight="217" MinWidth="430" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20, 20" Grid.Row="1" x:Name="WeeklyLogs" />
-        <Grid Grid.Row="1" Grid.Column="1">
-            
+        <Grid Grid.Row="1" Grid.Column="1" Margin="20">
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity=".5"/>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock.FontSize>25</TextBlock.FontSize>
+            <TextBlock.Foreground>WhiteSmoke</TextBlock.Foreground>
+            <TextBlock Padding="10" Grid.Row="0" x:Name="TotalTimeDay"/>
+            <TextBlock Padding="10" Grid.Row="1" x:Name="TotalTimeGivenPeriod"/>
+            <TextBlock Padding="10" Grid.Row="2" x:Name="TimeAverageGivenPeriod"/>
+            <TextBlock Padding="10" Grid.Row="3" x:Name="TotalTime"/>
         </Grid>
     </Grid>
 </UserControl>
