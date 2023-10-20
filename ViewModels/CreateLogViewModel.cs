@@ -90,7 +90,7 @@ namespace Mayuri.ViewModels
 
         private string MinuteFormat(TimeSpan timeSpan)
         {
-            string timeInMinute = timeSpan.TotalMinutes.ToString("0.00") + "m";
+            string timeInMinute = timeSpan.TotalMinutes.ToString("0") + "m";
             return timeInMinute;
         }
     }

@@ -44,9 +44,17 @@ namespace Mayuri.Services.SourceProvider
             List<KeyValuePair<Guid, string>> list = new List<KeyValuePair<Guid, string>>();
             foreach (var s in await GetCurrentSources())
             {
-                list.Add(new KeyValuePair<Guid, string>(s.SourceId, s.Name + " (" + s.Type + ")" + ": " + s.Description));
+                list.Add(new KeyValuePair<Guid, string>(s.SourceId, Truncate(s.Name + " (" + s.Type + ")" + ": " + s.Description, 75)));
             }
             return list;
+        }
+        private static string Truncate(string str, int maxLength)
+        {
+            if (String.IsNullOrEmpty(str))
+            {
+                return str;
+            }
+            return str[..Math.Min(str.Length, maxLength)];
         }
     }
 }
