@@ -20,10 +20,10 @@
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="0">
-            <Button BorderThickness="0" Background="Transparent" Click="RefreshScreen" Height="50" Width="50" HorizontalAlignment="Left">
+            <Button Margin="5, 5, 0, 0" BorderThickness="0" Background="Transparent" Click="RefreshScreen" Height="40" Width="40" HorizontalAlignment="Left">
                 <Image Source="/Images/Refresh.png"/>
             </Button>
-            <Label Grid.Row="0" Background="Transparent" Foreground="WhiteSmoke" FontWeight="ExtraBold"  FontSize="60" Padding="40, 0, 0, 0">Mayuri</Label>
+            <Label Grid.Row="0" Background="Transparent" Foreground="WhiteSmoke" FontWeight="ExtraBold"  FontSize="60" Padding="70, 0, 0, 0">Mayuri</Label>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Margin="30, 10">
             <StackPanel.Background>
