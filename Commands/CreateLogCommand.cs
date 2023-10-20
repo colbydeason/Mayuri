@@ -9,7 +9,6 @@ namespace Mayuri.Commands
     {
         private readonly CreateLogViewModel vm;
         private readonly ILogList lg;
-        // Add event so everything on menu can subscribe to it
         public CreateLogCommand(CreateLogViewModel createLogViewModel, ILogList logs)
         {
             vm = createLogViewModel;

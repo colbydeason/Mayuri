@@ -82,6 +82,7 @@ namespace Mayuri.ViewModels
         private ISourceList _sources;
         public AddSourceViewModel()
         {
+            SourceOneTime = false;
             _sources = App.Current.Services.GetService<ISourceList>();
             CreateSourceCommand = new CreateSourceCommand(this, _sources);
         }
