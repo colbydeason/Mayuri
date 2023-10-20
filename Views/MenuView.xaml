@@ -19,7 +19,12 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Background="Transparent" Foreground="WhiteSmoke" FontWeight="ExtraBold"  FontSize="60" Padding="40, 20, 0, 0">Mayuri</Label>
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <Button Margin="5, 5, 0, 0" BorderThickness="0" Background="Transparent" Click="RefreshScreen" Height="40" Width="40" HorizontalAlignment="Left">
+                <Image Source="/Images/Refresh.png"/>
+            </Button>
+            <Label Grid.Row="0" Background="Transparent" Foreground="WhiteSmoke" FontWeight="ExtraBold"  FontSize="60" Padding="70, 0, 0, 0">Mayuri</Label>
+        </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Margin="30, 10">
             <StackPanel.Background>
                 <SolidColorBrush Color="Black" Opacity=".3"/>
