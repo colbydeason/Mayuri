@@ -4,7 +4,7 @@ The goal of this application is to help those learning a language stay consisten
 In the future, there will be even more ways to view and monitor your logged immersion hours and stats. For now, you can view the current time spent today, total for the week, daily average for the week, and total time.
 
 ## Menu Window
-![image](https://github.com/colbydeason/Mayuri/assets/72679027/64ead6bd-6ffb-4ad7-80b9-c3ebb43cc580)
+![image](https://github.com/colbydeason/Mayuri/assets/72679027/211e92df-4ad5-4dc9-a4b3-c74d8c0af100)
 
 ## Stopwatch Window
 Note: The stopwatch will continue running in the background, regardless of minimization of the application, or navigation away from the Stopwatch  (to the Home Page, or while opening the Add / Log New Source or Create Log windows).
