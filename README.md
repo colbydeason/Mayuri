@@ -15,7 +15,7 @@ Note: The stopwatch will continue running in the background, regardless of minim
 ## Add Source
 Create a source using the name, description, and source type.
 
-![image](https://github.com/colbydeason/Mayuri/assets/72679027/3ab4d6a3-d8d8-4df6-ba2c-6c8311b1b6e4)
+![image](https://github.com/colbydeason/Mayuri/assets/72679027/18c92e7e-8dd5-4c45-a2be-03418ed12259)
 
 ## Create Log
 Log your immersion time by selecting a source from a dropdown (one you would have created through the add source window), and the time in minutes immersed. This can be any time, or choose what the current timer is at, which is displayed on the window rounded down to the nearest minute.
