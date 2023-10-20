@@ -1,5 +1,5 @@
 
-﻿using Mayuri.Models;
+using Mayuri.Models;
 using Microsoft.Extensions.DependencyInjection;
 using ScottPlot;
 using ScottPlot.Plottable;
@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Mayuri.Views
@@ -17,6 +18,25 @@ namespace Mayuri.Views
     public partial class MenuView : UserControl
     {
         public MenuView()
+        {
+            InitializeComponent();
+            ILogList lgList = App.Current.Services.GetService<ILogList>();
+            Plot plt = WeeklyLogs.Plot;
+            ScottPlot.Control.Configuration cf = WeeklyLogs.Configuration;
+            string tTD;
+            string tTGP;
+            string tAGP;
+            string tT;
+            PlotLogList(lgList, plt, cf, out tTD, out tTGP, out tAGP, out tT, "week");
+            TotalTimeDay.Text = tTD;
+            TotalTimeGivenPeriod.Text = tTGP;
+            TimeAverageGivenPeriod.Text = tAGP;
+            TotalTime.Text = tT;
+
+            WeeklyLogs.Refresh();
+        }
+
+        void RefreshScreen(object sender, RoutedEventArgs e)
         {
             InitializeComponent();
             ILogList lgList = App.Current.Services.GetService<ILogList>();

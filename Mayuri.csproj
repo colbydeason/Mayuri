@@ -13,6 +13,7 @@
     <None Remove="Images\LilyChouChouBlur.jpg" />
     <None Remove="Images\MayuriBlur.jpg" />
     <None Remove="Images\MayuriReachBlur.jpg" />
+    <None Remove="Images\Refresh.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,6 +36,7 @@
     <Resource Include="Images\LilyChouChouBlur.jpg" />
     <Resource Include="Images\MayuriBlur.jpg" />
     <Resource Include="Images\MayuriReachBlur.jpg" />
+    <Resource Include="Images\Refresh.png" />
   </ItemGroup>
 
   <ItemGroup>
