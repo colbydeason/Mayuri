@@ -126,7 +126,6 @@ namespace Mayuri.Views
                 logs.MoveNext();
                 tagp = (nowDate - logs.Current.LoggedAt.Date).Days;
                 currentBarDate = logs.Current.LoggedAt.Date;
-
             }
             else if (logPeriod == "day")
             {
