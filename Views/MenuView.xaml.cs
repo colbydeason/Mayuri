@@ -42,11 +42,8 @@ namespace Mayuri.Views
             ILogList lgList = App.Current.Services.GetService<ILogList>();
             Plot plt = WeeklyLogs.Plot;
             ScottPlot.Control.Configuration cf = WeeklyLogs.Configuration;
-            string tTD;
-            string tTGP;
-            string tAGP;
-            string tT;
-            PlotLogList(lgList, plt, cf, out tTD, out tTGP, out tAGP, out tT, "week");
+
+            PlotLogList(lgList, plt, cf, out string tTD, out string tTGP, out string tAGP, out string tT, "week");
             TotalTimeDay.Text = tTD;
             TotalTimeGivenPeriod.Text = tTGP;
             TimeAverageGivenPeriod.Text = tAGP;
@@ -71,21 +68,7 @@ namespace Mayuri.Views
         private static void PlotLogList(ILogList l, ScottPlot.Plot plot, ScottPlot.Control.Configuration conf,
             out string totalTimeDay, out string totalTimeGivenPeriod, out string timeAverageGivenPeriod, out string totalTime, string logPeriod = "all")
         {
-            Dictionary<string, Color> SourceColor = new Dictionary<string, Color>
-            {
-                { "Book", Color.FromArgb(255, 105, 97) },
-                { "Anime", Color.FromArgb(255, 180, 128)},
-                { "Manga", Color.FromArgb(248, 243, 141)},
-                { "Visual Novel", Color.FromArgb(66, 214, 164) },
-                { "Video Game", Color.FromArgb(8, 202, 209)},
-                { "Reading", Color.FromArgb(89, 173, 246) },
-                { "Listening", Color.FromArgb(157, 148, 255)},
-                { "Other", Color.FromArgb(199, 128, 232)},
-            };
-            conf.Pan = false;
-            conf.Zoom = false;
-            conf.ScrollWheelZoom = false;
-            conf.MiddleClickDragZoom = false;
+            MainGraphBasicSetup(conf, plot);
 
             plot.XAxis.DateTimeFormat(true);
             plot.YAxis2.SetSizeLimit(min: 0);
@@ -173,46 +156,7 @@ namespace Mayuri.Views
             {
                 throw new Exception("Invalid string for logPeriod");
             }
-            double lastBarTop = 0;
-            double tallestBar = 10;
-            do
-            {
-                Log curLog = logs.Current;
-                if (currentBarDate.Year != curLog.LoggedAt.Year ||
-                    currentBarDate.Month != curLog.LoggedAt.Month ||
-                    currentBarDate.Day != curLog.LoggedAt.Day)
-                {
-                    lastBarTop = 0;
-                    currentBarDate = curLog.LoggedAt.Date;
-                }
-                double barTop = lastBarTop + curLog.Duration;
-                double barBottom = lastBarTop;
-                lastBarTop += curLog.Duration;
-
-                tt += curLog.Duration;
-                ttgp += curLog.Duration;
-                if (curLog.LoggedAt.Date == nowDate)
-                {
-                    ttd += curLog.Duration;
-                }
-
-                if (barTop > tallestBar)
-                {
-                    tallestBar = barTop;
-                }
-
-                barSeries.Bars.Add(new Bar()
-                {
-                    Value = barTop,
-                    ValueBase = barBottom,
-                    FillColor = SourceColor[$"{curLog.LogSource.Type}"],
-                    LineColor = Color.Black,
-                    LineWidth = 1,
-                    Position = currentBarDate.ToOADate(),
-                    //Label = curLog.LogSource.Name,
-                });
-            } while (logs.MoveNext());
-            plot.SetAxisLimitsY(0, tallestBar + 10);
+            CreateBars(currentBarDate, logs, ref tt, ref ttgp, ref ttd, barSeries, plot);
 
             totalTime = "Total: \n" + ToTimeFormat(tt);
             totalTimeGivenPeriod = ($"Total for {logPeriod}: \n") + ToTimeFormat(ttgp);
