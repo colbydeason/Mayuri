@@ -23,11 +23,7 @@ namespace Mayuri.Views
             ILogList lgList = App.Current.Services.GetService<ILogList>();
             Plot plt = WeeklyLogs.Plot;
             ScottPlot.Control.Configuration cf = WeeklyLogs.Configuration;
-            string tTD;
-            string tTGP;
-            string tAGP;
-            string tT;
-            PlotLogList(lgList, plt, cf, out tTD, out tTGP, out tAGP, out tT, "week");
+            PlotLogList(lgList, plt, cf, out string tTD, out string tTGP, out string tAGP, out string tT, "week");
             TotalTimeDay.Text = tTD;
             TotalTimeGivenPeriod.Text = tTGP;
             TimeAverageGivenPeriod.Text = tAGP;
@@ -42,7 +38,6 @@ namespace Mayuri.Views
             ILogList lgList = App.Current.Services.GetService<ILogList>();
             Plot plt = WeeklyLogs.Plot;
             ScottPlot.Control.Configuration cf = WeeklyLogs.Configuration;
-
             PlotLogList(lgList, plt, cf, out string tTD, out string tTGP, out string tAGP, out string tT, "week");
             TotalTimeDay.Text = tTD;
             TotalTimeGivenPeriod.Text = tTGP;
@@ -121,17 +116,26 @@ namespace Mayuri.Views
                 oldestDate = nowDate.AddDays(-29);
                 plot.SetAxisLimitsX(oldestDate.AddDays(-.5).ToOADate(), nowDate.AddDays(.5).ToOADate());
                 logs.MoveNext();
-                currentBarDate = logs.Current.LoggedAt.Date;
-                while (currentBarDate < oldestDate)
-                {
-                    logs.MoveNext();
-                    tt += logs.Current.Duration;
-                    currentBarDate = logs.Current.LoggedAt.Date;
-                }
             }
             else
             {
                 throw new Exception("Invalid string for logPeriod");
+            }
+            currentBarDate = logs.Current.LoggedAt.Date;
+            while (currentBarDate < oldestDate)
+            {
+                tt += logs.Current.Duration;
+                logs.MoveNext();
+                if (logs.Current == null)
+                {
+                    totalTime = "Total: \n" + ToTimeFormat(tt);
+                    totalTimeGivenPeriod = ($"Total for {logPeriod}: \n") + ToTimeFormat(ttgp);
+                    totalTimeDay = "Today: \n" + ToTimeFormat(ttd);
+                    tagp = ttgp / tagp;
+                    timeAverageGivenPeriod = $"Daily average for {logPeriod}: \n" + ToTimeFormat(tagp);
+                    return;
+                }
+                currentBarDate = logs.Current.LoggedAt.Date;
             }
             CreateBars(currentBarDate, logs, ref tt, ref ttgp, ref ttd, barSeries, plot);
 
@@ -145,10 +149,8 @@ namespace Mayuri.Views
         private static string ToTimeFormat(int time)
         {
             int days;
-            int hours;
-            int minutes;
-            days = Math.DivRem(time, 1440, out hours);
-            hours = Math.DivRem(hours, 60, out minutes);
+            days = Math.DivRem(time, 1440, out int hours);
+            hours = Math.DivRem(hours, 60, out int minutes);
             if (days == 0 && hours == 0 && minutes == 0)
             {
                 return "None, Go Immerse!!!";
@@ -183,6 +185,63 @@ namespace Mayuri.Views
             p.Style(figureBackground: Color.FromArgb(127, 0, 0, 0), grid: Color.FromArgb(127, 0, 0, 0), axisLabel: Color.White, tick: Color.White);
             p.Style();
 
+            return;
+        }
+
+        private static void CreateBars(DateTime currentBarDate, IEnumerator<Log> logs, ref int tt, ref int ttgp, ref int ttd, BarSeries barSeries, ScottPlot.Plot plot)
+        {
+            DateTime nowDate = DateTime.Today;
+            Dictionary<string, Color> SourceColor = new Dictionary<string, Color>
+            {
+                { "Book", Color.FromArgb(255, 105, 97) },
+                { "Anime", Color.FromArgb(255, 180, 128)},
+                { "Manga", Color.FromArgb(248, 243, 141)},
+                { "Visual Novel", Color.FromArgb(66, 214, 164) },
+                { "Video Game", Color.FromArgb(8, 202, 209)},
+                { "Reading", Color.FromArgb(89, 173, 246) },
+                { "Listening", Color.FromArgb(157, 148, 255)},
+                { "Other", Color.FromArgb(199, 128, 232)},
+            };
+            double lastBarTop = 0;
+            double tallestBar = 10;
+            do
+            {
+                Log curLog = logs.Current;
+                if (currentBarDate.Year != curLog.LoggedAt.Year ||
+                    currentBarDate.Month != curLog.LoggedAt.Month ||
+                    currentBarDate.Day != curLog.LoggedAt.Day)
+                {
+                    lastBarTop = 0;
+                    currentBarDate = curLog.LoggedAt.Date;
+                }
+                double barTop = lastBarTop + curLog.Duration;
+                double barBottom = lastBarTop;
+                lastBarTop += curLog.Duration;
+
+                tt += curLog.Duration;
+                ttgp += curLog.Duration;
+                if (curLog.LoggedAt.Date == nowDate)
+                {
+                    ttd += curLog.Duration;
+                }
+
+                if (barTop > tallestBar)
+                {
+                    tallestBar = barTop;
+                }
+
+                barSeries.Bars.Add(new Bar()
+                {
+                    Value = barTop,
+                    ValueBase = barBottom,
+                    FillColor = SourceColor[$"{curLog.LogSource.Type}"],
+                    LineColor = Color.Black,
+                    LineWidth = 1,
+                    Position = currentBarDate.ToOADate(),
+                    //Label = curLog.LogSource.Name,
+                });
+            } while (logs.MoveNext());
+            plot.SetAxisLimitsY(0, tallestBar + 10);
             return;
         }
     }
