@@ -70,15 +70,6 @@ namespace Mayuri.Views
         {
             MainGraphBasicSetup(conf, plot);
 
-            plot.XAxis.DateTimeFormat(true);
-            plot.YAxis2.SetSizeLimit(min: 0);
-            plot.XAxis.Layout(padding: 0, maximumSize: 22);
-            plot.XAxis.Label("");
-            plot.YAxis.Label("Minutes");
-
-            plot.Style(figureBackground: Color.FromArgb(127, 0, 0, 0), grid: Color.FromArgb(127, 0, 0, 0), axisLabel: Color.White, tick: Color.White);
-            plot.Style();
-
             IEnumerable<Log> logEnum = l.GetAllLogs().Result;
             IEnumerator<Log> logs = logEnum.GetEnumerator();
             DateTime oldestDate;
@@ -108,20 +99,14 @@ namespace Mayuri.Views
                 plot.AxisAuto();
                 logs.MoveNext();
                 tagp = (nowDate - logs.Current.LoggedAt.Date).Days;
-                currentBarDate = logs.Current.LoggedAt.Date;
+                oldestDate = logs.Current.LoggedAt.Date;
             }
             else if (logPeriod == "day")
             {
                 tagp = 1;
+                oldestDate = nowDate;
                 plot.SetAxisLimitsX(nowDate.AddDays(-.5).ToOADate(), nowDate.AddDays(.5).ToOADate());
                 logs.MoveNext();
-                currentBarDate = logs.Current.LoggedAt.Date;
-                while (currentBarDate < nowDate)
-                {
-                    logs.MoveNext();
-                    tt += logs.Current.Duration;
-                    currentBarDate = logs.Current.LoggedAt.Date;
-                }
             }
             else if (logPeriod == "week")
             {
@@ -129,14 +114,6 @@ namespace Mayuri.Views
                 oldestDate = nowDate.AddDays(-6);
                 plot.SetAxisLimitsX(oldestDate.AddDays(-.5).ToOADate(), nowDate.AddDays(.5).ToOADate());
                 logs.MoveNext();
-                currentBarDate = logs.Current.LoggedAt.Date;
-                while (currentBarDate < oldestDate)
-                {
-                    logs.MoveNext();
-                    tt += logs.Current.Duration;
-                    currentBarDate = logs.Current.LoggedAt.Date;
-                }
-
             }
             else if (logPeriod == "month")
             {
@@ -188,6 +165,25 @@ namespace Mayuri.Views
             {
                 return $"{days}d, {hours}h, {minutes}m";
             }
+        }
+
+        private static void MainGraphBasicSetup(ScottPlot.Control.Configuration c, ScottPlot.Plot p)
+        {
+            c.Pan = false;
+            c.Zoom = false;
+            c.ScrollWheelZoom = false;
+            c.MiddleClickDragZoom = false;
+
+            p.XAxis.DateTimeFormat(true);
+            p.YAxis2.SetSizeLimit(min: 0);
+            p.XAxis.Layout(padding: 0, maximumSize: 22);
+            p.XAxis.Label("");
+            p.YAxis.Label("Minutes");
+
+            p.Style(figureBackground: Color.FromArgb(127, 0, 0, 0), grid: Color.FromArgb(127, 0, 0, 0), axisLabel: Color.White, tick: Color.White);
+            p.Style();
+
+            return;
         }
     }
 }
