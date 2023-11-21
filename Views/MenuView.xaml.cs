@@ -135,8 +135,17 @@ namespace Mayuri.Views
                 currentBarDate = logs.Current.LoggedAt.Date;
                 while (currentBarDate < nowDate)
                 {
-                    logs.MoveNext();
                     tt += logs.Current.Duration;
+                    logs.MoveNext();
+                    if (logs.Current == null)
+                    {
+                        totalTime = "Total: \n" + ToTimeFormat(tt);
+                        totalTimeGivenPeriod = ($"Total for {logPeriod}: \n") + ToTimeFormat(ttgp);
+                        totalTimeDay = "Today: \n" + ToTimeFormat(ttd);
+                        tagp = ttgp / tagp;
+                        timeAverageGivenPeriod = $"Daily average for {logPeriod}: \n" + ToTimeFormat(tagp);
+                        return;
+                    }
                     currentBarDate = logs.Current.LoggedAt.Date;
                 }
             }
@@ -149,8 +158,17 @@ namespace Mayuri.Views
                 currentBarDate = logs.Current.LoggedAt.Date;
                 while (currentBarDate < oldestDate)
                 {
-                    logs.MoveNext();
                     tt += logs.Current.Duration;
+                    logs.MoveNext();
+                    if (logs.Current == null)
+                    {
+                        totalTime = "Total: \n" + ToTimeFormat(tt);
+                        totalTimeGivenPeriod = ($"Total for {logPeriod}: \n") + ToTimeFormat(ttgp);
+                        totalTimeDay = "Today: \n" + ToTimeFormat(ttd);
+                        tagp = ttgp / tagp;
+                        timeAverageGivenPeriod = $"Daily average for {logPeriod}: \n" + ToTimeFormat(tagp);
+                        return;
+                    }
                     currentBarDate = logs.Current.LoggedAt.Date;
                 }
 
@@ -164,8 +182,17 @@ namespace Mayuri.Views
                 currentBarDate = logs.Current.LoggedAt.Date;
                 while (currentBarDate < oldestDate)
                 {
-                    logs.MoveNext();
                     tt += logs.Current.Duration;
+                    logs.MoveNext();
+                    if (logs.Current == null)
+                    {
+                        totalTime = "Total: \n" + ToTimeFormat(tt);
+                        totalTimeGivenPeriod = ($"Total for {logPeriod}: \n") + ToTimeFormat(ttgp);
+                        totalTimeDay = "Today: \n" + ToTimeFormat(ttd);
+                        tagp = ttgp / tagp;
+                        timeAverageGivenPeriod = $"Daily average for {logPeriod}: \n" + ToTimeFormat(tagp);
+                        return;
+                    }
                     currentBarDate = logs.Current.LoggedAt.Date;
                 }
             }
